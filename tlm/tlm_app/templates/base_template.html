@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <title>Django Project Template</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to The Language Medium app.</h1>
+    </header>
+    <main>
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+    <footer>
+        <p>Created by Group 4 - 24/09/14</p>
+    </footer>
+</body>
+</html>
