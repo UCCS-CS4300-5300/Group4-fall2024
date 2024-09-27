@@ -32,6 +32,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'app-bwalton-5.devedu.io',
     'app-chajde-5.devedu.io',
+    'app-mdelgad3-5.devedu.io',
 ]
 
 
