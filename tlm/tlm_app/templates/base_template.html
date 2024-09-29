@@ -1,24 +1,178 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
+{% load static %}
+
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
-    <title>Django Project Template</title>
+    <title>{% block title %}The Language Medium{% endblock %}</title>
+    
+    <!-- Bootstrap CSS (via CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom styles for both pop-up menus -->
+    <style>
+        /* Center the navbar title while keeping other elements in place */
+        .navbar {
+            position: relative;
+        }
+        .navbar-brand {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Positioning for the hamburger and user pop-up menus */
+        .menu-wrapper, .user-wrapper {
+            position: relative;
+        }
+
+        /* Pop-up box with scale and fade effect */
+        .popup-menu, .user-popup-menu {
+            position: absolute;
+            top: 100%;
+            width: 200px;
+            background: linear-gradient(145deg, #f8f9fa, #e0e0e0);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+        .user-popup-menu {
+            right: 0;
+        }
+
+        /* Show the pop-up with scale and fade effect */
+        .popup-menu.show, .user-popup-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        /* Styling for the menu options */
+        .popup-menu ul, .user-popup-menu ul {
+            list-style-type: none;
+            padding: 15px;
+            margin: 0;
+        }
+
+        .popup-menu ul li, .user-popup-menu ul li {
+            margin: 10px 0;
+        }
+
+        .popup-menu ul li a, .user-popup-menu ul li a {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Hover effect for the pop-up options */
+        .popup-menu ul li a:hover, .user-popup-menu ul li a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to The Language Medium app.</h1>
-    </header>
-    <main>
-        <div>
-            {% block content %}
-            {% endblock %}
+
+    <!-- Unified Navbar -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            
+            <!-- Hamburger Menu Wrapper (to position pop-up correctly) -->
+            <div class="menu-wrapper">
+                <!-- Hamburger Menu (top left) -->
+                <button class="navbar-toggler" type="button" id="menuToggle" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Pop-up Box Hamburger Menu -->
+                <div class="popup-menu" id="popupMenu">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Quick Translate</a></li>
+                        <li><a href="#">My Lists</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- App Title (centered) -->
+            <a class="navbar-brand" href="#">The Language Medium</a>
+
+            <!-- Profile Icon and User Pop-up Menu -->
+            <div class="user-wrapper d-flex ms-auto">
+                <!-- User Profile Icon (top right) -->
+                <a href="javascript:void(0)" id="userIcon" class="btn btn-light">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="User Icon" width="30" height="30" class="rounded-circle">
+                </a>
+
+                <!-- User Pop-up Box (right) -->
+                <div class="user-popup-menu" id="userPopupMenu">
+                    <ul>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Log In</a></li> <!-- Changed to "Log In" -->
+                    </ul>
+                </div>
+            </div>
         </div>
-    </main>
-    <footer>
-        <p>Created by Group 4 - 24/09/14</p>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container mt-5">
+        {% block content %}
+        <!-- Child pages can put their content here -->
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center text-lg-start mt-auto">
+        <div class="text-center p-3">
+            &copy; 2024 The Language Medium
+        </div>
     </footer>
+
+    <!-- Bootstrap JS (via CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS to handle both pop-up behaviors -->
+    <script>
+        // Get the toggle buttons and the pop-up menus
+        const menuToggle = document.getElementById('menuToggle');
+        const popupMenu = document.getElementById('popupMenu');
+        const userIcon = document.getElementById('userIcon');
+        const userPopupMenu = document.getElementById('userPopupMenu');
+
+        // Toggle the hamburger pop-up menu
+        menuToggle.addEventListener('click', function() {
+            popupMenu.classList.toggle('show');
+        });
+
+        // Toggle the user pop-up menu
+        userIcon.addEventListener('click', function() {
+            userPopupMenu.classList.toggle('show');
+        });
+
+        // Close menus if clicked outside
+        document.addEventListener('click', function(event) {
+            if (!menuToggle.contains(event.target) && !popupMenu.contains(event.target)) {
+                popupMenu.classList.remove('show');
+            }
+            if (!userIcon.contains(event.target) && !userPopupMenu.contains(event.target)) {
+                userPopupMenu.classList.remove('show');
+            }
+        });
+    </script>
+
 </body>
 </html>

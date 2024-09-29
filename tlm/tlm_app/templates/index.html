@@ -1,5 +1,35 @@
-{% extends "base_template.html" %}
+{% extends 'base_template.html' %}
+
+{% load static %}
+
+{% block title %}Welcome - The Language Medium{% endblock %}
 
 {% block content %}
-<p>This is the landing page.</p>
+<div class="text-center">
+    <h1 class="display-4">Welcome to The Language Medium</h1>
+    <p class="lead">Quick, reliable translations at your fingertips.</p>
+    <p>Save your most-used phrases and access them whenever you need them, no matter where you are.</p>
+    <a href="#" class="btn btn-primary btn-lg">Get Started</a> <!-- This button should change when the user is logged in -->
+</div>
+
+<!-- Features Section -->
+<div class="row mt-5">
+    <div class="col-md-4 text-center">
+        <h3>Save Custom Phrases</h3>
+        <p>Create custom lists of phrases you use the most for quick access anytime.</p>
+    </div>
+    <div class="col-md-4 text-center">
+        <h3>Instant Translations</h3>
+        <p>Quickly translate words and phrases on the go, with support for multiple languages.</p>
+    </div>
+    <div class="col-md-4 text-center">
+        <h3>Mobile Friendly</h3>
+        <p>Our app is designed for mobile users, ensuring a smooth and easy experience during your travels.</p>
+    </div>
+</div>
+
+<!-- Learn More button, not sure where this will lead but I thought it looked homepage-ey -->
+<div class="text-center mt-5">
+    <a href="#" class="btn btn-outline-primary btn-lg">Learn More</a>
+</div>
 {% endblock %}
