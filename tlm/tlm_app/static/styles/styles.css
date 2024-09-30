@@ -1,24 +1,90 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+/* Center the navbar title while keeping other elements in place */
+.navbar {
+    position: relative;
+}
+
+.navbar-custom {
+    background-color: #8d1dce;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-toggler {
+    background-color: #8d1dce;
+    border-color: white;
+}
+
+.btn-color {
+    background-color: #8d1dce;
+    transition: all 0.3s ease;
+}
+
+.btn-border-color {
+    border-color: #8d1dce;
+}
+
+.navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Positioning for the hamburger and user pop-up menus */
+.menu-wrapper, .user-wrapper {
+    position: relative;
+}
+
+/* Pop-up box with scale and fade effect */
+.popup-menu, .user-popup-menu {
+    position: absolute;
+    top: 100%;
+    width: 200px;
+    background: linear-gradient(145deg, #f8f9fa, #e0e0e0);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+.user-popup-menu {
+    right: 0;
+}
+
+/* Show the pop-up with scale and fade effect */
+.popup-menu.show, .user-popup-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+/* Styling for the menu options */
+.popup-menu ul, .user-popup-menu ul {
+    list-style-type: none;
+    padding: 15px;
     margin: 0;
-    padding:  20px;
 }
 
-header {
-    background-color: #4caf50;
+.popup-menu ul li, .user-popup-menu ul li {
+    margin: 10px 0;
+}
+
+.popup-menu ul li a, .user-popup-menu ul li a {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect for the pop-up options */
+.popup-menu ul li a:hover, .user-popup-menu ul li a:hover {
+    background-color: #8d1dce;
     color: white;
-    padding: 10px 0;
-    text-align: center;
-}
-
-main {
-    margin: 20px 0;
-    text-align: center;
-}
-footer {
-    text-align: center;
-    font-size: 0.8em;
-    color: #777;
 }
