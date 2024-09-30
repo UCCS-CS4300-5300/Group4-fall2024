@@ -4,7 +4,7 @@
 }
 
 .navbar-custom {
-    background-color: #8d1dce;
+    background: linear-gradient(to right, #5e068e, #a667c9); /* Gradient from left to right */
 }
 
 .navbar-toggler-icon {
@@ -17,8 +17,14 @@
 }
 
 .btn-color {
-    background-color: #8d1dce;
+    background-color: #bd89db;
+    
     transition: all 0.3s ease;
+}
+
+/* Hover Color For All Buttons Button*/
+.btn:hover{
+    background-color: #8c3194c1;
 }
 
 .btn-border-color {
