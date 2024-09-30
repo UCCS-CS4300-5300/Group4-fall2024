@@ -16,7 +16,43 @@
         /* Center the navbar title while keeping other elements in place */
         .navbar {
             position: relative;
+
+
         }
+
+        .navbar-custom {
+
+            background-color: #8d1dce;
+
+        }
+
+
+        .navbar-toggler-icon {
+
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+
+        }
+
+        .navbar-toggler {
+
+            background-color: #8d1dce;
+            border-color: white;
+
+        }
+
+        .btn-color {
+
+            background-color: #8d1dce;
+            transition: all 0.3s ease;
+
+        }
+
+        .btn-border-color {
+
+            border-color: #8d1dce;
+
+        }
+
         .navbar-brand {
             position: absolute;
             left: 50%;
@@ -77,7 +113,7 @@
 
         /* Hover effect for the pop-up options */
         .popup-menu ul li a:hover, .user-popup-menu ul li a:hover {
-            background-color: #007bff;
+            background-color: #8d1dce;
             color: white;
         }
     </style>
@@ -85,14 +121,14 @@
 <body>
 
     <!-- Unified Navbar -->
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-dark navbar-custom shadow-lg">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             
             <!-- Hamburger Menu Wrapper (to position pop-up correctly) -->
             <div class="menu-wrapper">
                 <!-- Hamburger Menu (top left) -->
                 <button class="navbar-toggler" type="button" id="menuToggle" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="navbar-toggler-icon"></i>
                 </button>
 
                 <!-- Pop-up Box Hamburger Menu -->
