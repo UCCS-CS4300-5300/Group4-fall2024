@@ -141,3 +141,7 @@
     background-color: #525151; 
     color: #ffffff;         
 }
+
+.dark-mode .footer {
+    background-color: #313131;
+}
