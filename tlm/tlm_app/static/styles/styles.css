@@ -3,6 +3,10 @@
     position: relative;
 }
 
+.footer {
+    background-color: #cfd2d8;
+}
+
 .navbar-custom {
     background: linear-gradient(90deg, rgba(166,103,201,1) 5%, rgba(94,6,142,1) 50%, rgba(166,103,201,1) 95%); /* Gradient from left to right */
 }
