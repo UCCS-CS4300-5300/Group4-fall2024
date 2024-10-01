@@ -4,7 +4,7 @@
 }
 
 .navbar-custom {
-    background: linear-gradient(to right, #5e068e, #a667c9); /* Gradient from left to right */
+    background: linear-gradient(90deg, rgba(166,103,201,1) 5%, rgba(94,6,142,1) 50%, rgba(166,103,201,1) 95%); /* Gradient from left to right */
 }
 
 .navbar-toggler-icon {
@@ -18,7 +18,6 @@
 
 .btn-color {
     background-color: #bd89db;
-    
     transition: all 0.3s ease;
 }
 

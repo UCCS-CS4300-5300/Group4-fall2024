@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}The Language Medium{% endblock %}</title>
-
     <!-- Bootstrap CSS (via CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
@@ -14,7 +13,6 @@
     <!-- Unified Navbar -->
     <nav class="navbar navbar-dark navbar-custom shadow-lg">
         <div class="container-fluid d-flex justify-content-between align-items-center">
-            
             <!-- Hamburger Menu Wrapper (to position pop-up correctly) -->
             <div class="d-flex align-items-center">
                 <div class="menu-wrapper">
@@ -25,7 +23,6 @@
                 </div>
                 <!-- Logo Icon -->
                 <img src="{% static 'images/globe.png' %}" alt="The Language Medium Logo" width="65" height="auto" class="logo-image">
-
                 <!-- Pop-up Box Hamburger Menu -->
                 <div class="popup-menu" id="popupMenu">
                     <ul>
@@ -36,23 +33,18 @@
                     </ul>
                 </div>
             </div>
-
             <!-- App Title (centered) -->
             <a class="navbar-brand" href="{% url 'index' %}">The Language Medium</a>
-
             <!-- Profile Icon and User Pop-up Menu -->
             <div class="user-wrapper d-flex ms-auto">
                 <!-- Dark mode button  -->
                 <a href="javascript:void(0)" id="darkModeToggle" class="btn btn-light me-3">
                     <img src="{% static 'images/darkModeToggle.png' %}" alt="Dark Mode" width="30" height="30">
                 </a>
-
                 <!-- User Profile Icon (top right) -->
                 <a href="javascript:void(0)" id="userIcon" class="btn btn-light">
                     <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="User Icon" width="30" height="30" class="account-icon">
                 </a>
-                
-                
                 <!-- User Pop-up Box (right) -->
                 <div class="user-popup-menu" id="userPopupMenu">
                     <ul>
@@ -64,26 +56,21 @@
             </div>
         </div>
     </nav>
-
     <!-- Main content -->
     <div class="container mt-5">
         {% block content %}
         <!-- Child pages can put their content here -->
         {% endblock %}
     </div>
-
     <!-- Footer -->
     <footer class="footer fixed-bottom text-center text-lg-start mt-auto"> 
         <div class="text-center p-3">
             &copy; 2024 The Language Medium
         </div>
     </footer>
-
-
     <!-- Bootstrap JS (via CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'scripts/script.js' %}"></script>
-
     <!-- Dark Mode Script -->
     <script>
         const darkModeToggle = document.getElementById('darkModeToggle');
@@ -93,6 +80,5 @@
             body.classList.toggle('dark-mode');
         });
     </script>
-
 </body>
 </html>
