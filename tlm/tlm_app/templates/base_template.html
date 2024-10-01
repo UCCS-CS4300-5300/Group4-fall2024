@@ -16,11 +16,15 @@
         <div class="container-fluid d-flex justify-content-between align-items-center">
             
             <!-- Hamburger Menu Wrapper (to position pop-up correctly) -->
-            <div class="menu-wrapper">
-                <!-- Hamburger Menu (top left) -->
-                <button class="navbar-toggler" type="button" id="menuToggle" aria-label="Toggle navigation">
-                    <i class="navbar-toggler-icon"></i>
-                </button>
+            <div class="d-flex align-items-center">
+                <div class="menu-wrapper">
+                    <!-- Hamburger Menu (top left) -->
+                    <button class="navbar-toggler" type="button" id="menuToggle" aria-label="Toggle navigation">
+                        <i class="navbar-toggler-icon"></i>
+                    </button>
+                </div>
+                <!-- Logo Icon -->
+                <img src="{% static 'images/globe.png' %}" alt="The Language Medium Logo" width="65" height="auto" class="logo-image">
 
                 <!-- Pop-up Box Hamburger Menu -->
                 <div class="popup-menu" id="popupMenu">
@@ -38,11 +42,17 @@
 
             <!-- Profile Icon and User Pop-up Menu -->
             <div class="user-wrapper d-flex ms-auto">
-                <!-- User Profile Icon (top right) -->
-                <a href="javascript:void(0)" id="userIcon" class="btn btn-light">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="User Icon" width="30" height="30" class="rounded-circle">
+                <!-- Dark mode button  -->
+                <a href="javascript:void(0)" id="darkModeToggle" class="btn btn-light me-3">
+                    <img src="{% static 'images/darkModeToggle.png' %}" alt="Dark Mode" width="30" height="30">
                 </a>
 
+                <!-- User Profile Icon (top right) -->
+                <a href="javascript:void(0)" id="userIcon" class="btn btn-light">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="User Icon" width="30" height="30" class="account-icon">
+                </a>
+                
+                
                 <!-- User Pop-up Box (right) -->
                 <div class="user-popup-menu" id="userPopupMenu">
                     <ul>
@@ -63,14 +73,26 @@
     </div>
 
     <!-- Footer -->
-    <footer class="fixed-bottom bg-light text-center text-lg-start mt-auto"> 
+    <footer class="footer fixed-bottom text-center text-lg-start mt-auto"> 
         <div class="text-center p-3">
             &copy; 2024 The Language Medium
         </div>
     </footer>
 
+
     <!-- Bootstrap JS (via CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'scripts/script.js' %}"></script>
+
+    <!-- Dark Mode Script -->
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+        });
+    </script>
+
 </body>
 </html>

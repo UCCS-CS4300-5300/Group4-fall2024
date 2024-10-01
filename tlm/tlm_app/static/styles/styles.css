@@ -94,3 +94,47 @@
     background-color: #8d1dce;
     color: white;
 }
+
+/* Styling for logo */
+.logo-image {
+    width: 60px; 
+    height: auto;
+    padding: 0;
+    margin: 0 20px; 
+    display: inline-block;
+}
+
+/* Dark mode for main page */
+.dark-mode {
+    background-color: #121212; 
+    color: #f1f1f1; 
+}
+
+/* Dark mode for NAV bar*/
+.dark-mode .navbar-custom {
+    background: linear-gradient(to right, #181818, #3d3d3d); 
+}
+
+
+/* Dark mode for hamburger menu*/
+.dark-mode .navbar-toggler {
+    background-color: #313131;  
+    border-color: #3d3c3c;      
+}
+
+/* Dark mode for middle buttons TEXT and TLM TEXT at top middle*/
+.dark-mode a {
+    color: #ffffff; 
+}
+
+/* Dark mode for middle buttons */
+.dark-mode .btn {
+    background-color: #313131;     
+    border-color: #3d3c3c;     
+}
+
+/* Dark mode for over hovering middle buttons */
+.dark-mode .btn:hover {
+    background-color: #525151; 
+    color: #ffffff;         
+}
