@@ -39,6 +39,10 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [
     'https://app-bwalton-5.devedu.io',
+    'app-chajde-5.devedu.io',
+    'app-cjohns51-5.devedu.io',
+    'app-mdelgad3-5.devedu.io',
+    'app-akumar-5.devedu.io',
 ]
 
 # Application definition
