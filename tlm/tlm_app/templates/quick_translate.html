@@ -1,16 +1,24 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Quick Translate Page{% endblock %}</title>
+{% extends 'base_template.html' %}
+{% block title %}Welcome - The Language Medium{% endblock %}
+{% block content %}
 
-    <!-- Bootstrap CSS (via CDN) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
-</head>
-<body>
-    <p>Quick Translate Page</p>
-</body>
-</html>
+<p>Quick Translate Page</p>
+<div class='container-fluid text-center'>
+    <form action='' method='POST'>
+        {% csrf_token %}
+        <div class='row'>
+            <div class='col'>
+                {{ form.q_lang }}
+                {{ form.q_text }}
+            </div>
+            <div class='col'>
+                {{ form.t_lang }}
+                {{ form.t_text }}
+            </div>
+        </div>
+        <div class='container'>
+            <input type="submit" value="Submit" name="submit">
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -37,6 +37,9 @@ ALLOWED_HOSTS = [
     'app-akumar-5.devedu.io',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://app-bwalton-5.devedu.io',
+]
 
 # Application definition
 
