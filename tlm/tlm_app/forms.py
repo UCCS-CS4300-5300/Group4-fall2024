@@ -2,7 +2,7 @@ from django import forms
 
 class QuickTranslateForm(forms.Form):
     q_lang_options = (
-        ('', 'Auto-Detect'),
+        ('auto', 'Auto-Detect'),
         ('en', 'English'),
         ('fr', 'French'),
         ('es', 'Spanish'),
