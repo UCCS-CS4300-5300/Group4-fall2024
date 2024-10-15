@@ -8,20 +8,24 @@
     <form action='' method='POST'>
         {% csrf_token %}
         <div class='row'>
-            <div class='col'>
-                {{ form.q_lang }}
-                <br>
-                {{ form.q_text }}
-            </div>
-            <div class='col'>
-                {{ form.t_lang }}
-                <br>
-                {{ form.t_text }}
+            <div class="shadow-lg rounded bg-light">
+                <div class='col'>
+                    {{ form.q_lang }}
+                    <br>
+                    {{ form.q_text }}
+                </div>
+                <div style="padding-top: 5px;" class='col'>
+                    {{ form.t_lang }}
+                    <br>
+                    {{ form.t_text }}
+                </div>
+
+                <div style="padding-top: 5px; padding-bottom: 5px;"class="container">
+                    <input class="btn btn-color btn-dark" type="submit" value="Translate" name="translate">
+                </div>
             </div>
         </div>
-        <div class='container'>
-            <input type="submit" value="Submit" name="submit">
-        </div>
+        
     </form>
 </div>
 {% endblock %}
