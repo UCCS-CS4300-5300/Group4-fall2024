@@ -1,13 +1,22 @@
 from django.urls import path, include
 from . import views
+from django.contrib.auth.views import LogoutView
+from django.contrib import messages
+from django.contrib.auth import views as auth_views
+
+def custom_logout_view(request):
+    messages.success(request, "You've been logged out. See you later!")
+    return LogoutView.as_view(next_page='index')(request)
 
 urlpatterns = [
     path('', views.index, name='index'), # Index page url
     path('about/', views.about, name='about'), # About page url
     path('lists/', views.myLists, name='lists'), # My list page url
-    path('login/', views.login, name='login'), # Login page url
     path('profile/', views.profile, name='profile'), # Profile page url
     path('quick_Translate', views.quickTranslate, name='quick_Translate'), # Quick translate page url
     path('settings', views.settings, name='settings'), # Settings page url 
-    path('signup', views.signup, name='signup') # Sign up page url
+    
+    path('register', views.register, name='register'), # Register page url
+    path('logout/', custom_logout_view, name='logout'), # Logout page url
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'), # Login page url
 ]

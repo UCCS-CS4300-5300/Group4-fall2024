@@ -48,14 +48,31 @@
                 <!-- User Pop-up Box (right) -->
                 <div class="user-popup-menu" id="userPopupMenu">
                     <ul>
-                        <li><a href="#" id="profile-page-redirect">Profile</a></li>
-                        <li><a href="#" id="settings-page-redirect">Settings</a></li>
-                        <li><a href="#" id="login-page-redirect">Log In</a></li> <!-- Changed to "Log In" -->
+                        {% if user.is_authenticated %}
+                        <li>Welcome, {{ user.username }}</li>
+                        <li><a href="{% url 'profile' %}">Profile</a></li>
+                        <li><a href="{% url 'settings' %}">Settings</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Log In</a></li>
+                    {% endif %}
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Display success or error messages -->
+    <div class="container mt-3">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
     <!-- Main content -->
     <div class="container mt-5">
         {% block content %}
