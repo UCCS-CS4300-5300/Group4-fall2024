@@ -18,5 +18,4 @@ urlpatterns = [
     path('register', views.register, name='register'), # Register page url
     path('logout/', custom_logout_view, name='logout'), # Logout page url
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'), # Login page url
-    re_path(r'^.*$', views.catch_all),
 ]
