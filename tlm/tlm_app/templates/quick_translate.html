@@ -2,17 +2,20 @@
 {% block title %}Welcome - The Language Medium{% endblock %}
 {% block content %}
 
-<p>Quick Translate Page</p>
+<h1 style="text-align: center;">Quickly translate words or phrases below!</h1>
+<br>
 <div class='container-fluid text-center'>
     <form action='' method='POST'>
         {% csrf_token %}
         <div class='row'>
             <div class='col'>
                 {{ form.q_lang }}
+                <br>
                 {{ form.q_text }}
             </div>
             <div class='col'>
                 {{ form.t_lang }}
+                <br>
                 {{ form.t_text }}
             </div>
         </div>

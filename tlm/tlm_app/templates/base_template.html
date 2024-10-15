@@ -26,10 +26,10 @@
                 <!-- Pop-up Box Hamburger Menu -->
                 <div class="popup-menu" id="popupMenu">
                     <ul>
-                        <li><a href="#" id="home-page-redirect">Home</a></li>
-                        <li><a href="#" id="about-page-redirect">About</a></li>
-                        <li><a href="#" id="qTranslate-page-redirect">Quick Translate</a></li>
-                        <li><a href="#" id="list-page-redirect">My Lists</a></li>
+                        <li><a href="{% url 'index' %}" id="home-page-redirect">Home</a></li>
+                        <li><a href="{% url 'about' %}" id="about-page-redirect">About</a></li>
+                        <li><a href="{% url 'quick_Translate' %}" id="qTranslate-page-redirect">Quick Translate</a></li>
+                        <li><a href="{% url 'lists' %}" id="list-page-redirect">My Lists</a></li>
                     </ul>
                 </div>
             </div>
