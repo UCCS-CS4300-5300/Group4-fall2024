@@ -4,12 +4,11 @@
 
 <h1 style="text-align: center;">Quickly translate words or phrases below!</h1>
 <br>
-<div class='container-fluid text-center'>
+<div class='container-fluid text-center shadow rounded bg-light'>
     <form action='' method='POST'>
         {% csrf_token %}
-        <div class='row'>
-            <div class="shadow rounded bg-light">
-                <div style="float: left; width: 650px; padding-top: 5px;" class='col'>
+            <div class='row'>
+                <div style="padding-top: 5px;" class='col'>
                     {{ form.q_lang }}
                     <br>
                     {{ form.q_text }}
@@ -19,13 +18,10 @@
                     <br>
                     {{ form.t_text }}
                 </div>
-
                 <div style="padding-top: 5px; padding-bottom: 5px;"class="container">
                     <input class="btn btn-color btn-dark" type="submit" value="Translate" name="translate">
                 </div>
             </div>
-        </div>
-        
     </form>
 </div>
 {% endblock %}
