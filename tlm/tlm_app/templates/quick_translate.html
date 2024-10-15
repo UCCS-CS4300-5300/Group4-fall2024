@@ -8,8 +8,8 @@
     <form action='' method='POST'>
         {% csrf_token %}
         <div class='row'>
-            <div class="shadow-lg rounded bg-light">
-                <div style="padding-top: 5px;" class='col'>
+            <div class="shadow rounded bg-light">
+                <div style="float: left; width: 650px; padding-top: 5px;" class='col'>
                     {{ form.q_lang }}
                     <br>
                     {{ form.q_text }}
