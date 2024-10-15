@@ -49,3 +49,6 @@ def login(request):
 
 def logout(request):
     return render(request, 'logout.html')
+
+def catch_all(request):
+    return HttpResponseRedirect(reverse('index'))  # Redirect to the index view

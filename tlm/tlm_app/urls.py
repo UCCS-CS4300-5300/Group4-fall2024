@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, include, re_path
 from . import views
 from django.contrib.auth.views import LogoutView
 from django.contrib import messages
@@ -15,8 +15,8 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'), # Profile page url
     path('quick_Translate', views.quickTranslate, name='quick_Translate'), # Quick translate page url
     path('settings', views.settings, name='settings'), # Settings page url 
-    
     path('register', views.register, name='register'), # Register page url
     path('logout/', custom_logout_view, name='logout'), # Logout page url
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'), # Login page url
+    re_path(r'^.*$', views.catch_all),
 ]
