@@ -142,6 +142,13 @@
     color: #ffffff;         
 }
 
+/* Dark mode for footer */
 .dark-mode .footer {
     background-color: #313131;
+}
+
+/*Dark mode for "Welcome, User-name" text */
+.dark-mode .user-popup-menu li:first-child {
+    color: #181818; 
+    font-weight: bold;
 }
