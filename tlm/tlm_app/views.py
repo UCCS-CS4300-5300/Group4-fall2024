@@ -3,6 +3,8 @@ from .forms import QuickTranslateForm
 import translators as ts
 from django.contrib import messages
 from .forms import UserRegisterForm
+from django.http import JsonResponse, HttpResponse
+from gtts import gTTS
 
 # Create your views here.
 def index(request):
@@ -49,3 +51,11 @@ def login(request):
 
 def logout(request):
     return render(request, 'logout.html')
+
+def speak(request):
+    text = request.GET.get('text', '')
+    lang = request.GET.get('lang', 'en')
+    tts = gTTS(text, lang=lang)
+    response = HttpResponse(content_type='audio/mpeg')
+    tts.write_to_fp(response)
+    return response
