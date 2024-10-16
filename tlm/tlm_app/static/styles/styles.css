@@ -152,3 +152,10 @@
     color: #181818; 
     font-weight: bold;
 }
+
+/* For use with any box that isn't white */
+.secondary-color {
+
+    background: radial-gradient(rgba(94,6,142,1) 50%, rgba(166,103,201,1) 5%);
+
+}

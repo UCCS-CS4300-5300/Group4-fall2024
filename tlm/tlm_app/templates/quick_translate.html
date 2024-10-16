@@ -2,7 +2,7 @@
 {% block title %}Welcome - The Language Medium{% endblock %}
 {% block content %}
 <h1 style="text-align: center;">Quickly translate words or phrases below!</h1><br>
-<div class='container-fluid text-center shadow rounded bg-light'>
+<div class='container-fluid text-center shadow rounded'>
     <form action='' method='POST'>
         {% csrf_token %}
         <div class='row'>
@@ -22,6 +22,15 @@
             </div>
         </div>
     </form>
+</div>
+<br>
+<div style="margin: auto; width: 50%; background: linear-gradient(rgba(166,103,201,1), rgba(94,6,142,1));" class="container-fluid shadow rounded">
+    <h1 style="color: white; text-align: center; padding-top: 5px;">Recent translations</h1>
+    <div style="padding:5px;">
+
+        <p style="text-align:center; font-weight:bold; color:white;">This would be where the recent translations<br>went, if we had them!</p>
+
+    </div>
 </div>
 
 <script>
