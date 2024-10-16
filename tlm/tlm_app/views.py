@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import QuickTranslateForm
+from .forms import QuickTranslateForm, UserRegisterForm
+from .models import UserTranslationHistory
 import translators as ts
 from django.contrib import messages
-from .forms import UserRegisterForm
+from django.contrib.auth.models import User
 from django.http import JsonResponse, HttpResponse
 from gtts import gTTS
 
@@ -22,11 +23,17 @@ def profile(request):
 def quickTranslate(request):
     if request.method == 'POST':
         data = request.POST.copy()
-        data['t_text'] = ts.translate_text(data['q_text'], from_language=data['q_lang'], to_language=data['t_lang'])
+        data['targetText'] = ts.translate_text(data['sourceText'], from_language=data['sourceLanguage'], to_language=data['targetLanguage'])
         form = QuickTranslateForm(data)
+        if form.is_valid() and request.user.is_authenticated:
+            translation = form.save(commit=False)
+            translation.user = request.user
+            translation.save()
     else:
         form = QuickTranslateForm()
-    context = {'form': form}
+    translationHistory = UserTranslationHistory.objects.filter(user=request.user)
+    print(translationHistory)
+    context = {'form': form, 'translationHistory': translationHistory}
     return render(request, 'quick_translate.html', context)
 
 def settings(request):

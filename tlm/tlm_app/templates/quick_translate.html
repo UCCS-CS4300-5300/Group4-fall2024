@@ -7,14 +7,15 @@
         {% csrf_token %}
         <div class='row'>
             <div style="padding-top: 5px;" class='col'>
-                {{ form.q_lang }}
+                {{ form.sourceLanguage }}
                 <br>
-                {{ form.q_text }}
+                {{ form.sourceText }}
             </div>
             <div style="padding-top: 5px;" class='col'>
-                {{ form.t_lang }}
+                {{ form.targetLanguage }}
                 <br>
-                {{ form.t_text }}
+                {{ form.targetText }}
+                <br>
                 <button type="button" class="btn btn-color btn-dark" onclick="speakText()">Pronunciation</button>
             </div>
             <div style="padding-top: 5px; padding-bottom: 5px;"class="container">
@@ -27,16 +28,36 @@
 <div style="margin: auto; width: 50%;" class="container-fluid shadow rounded secondary-color">
     <h1 style="color: white; text-align: center; padding-top: 5px;">Recent translations</h1>
     <div style="padding:5px;">
-
-        <p style="text-align:center; font-weight:bold; color:white;">This would be where the recent translations<br>went, if we had them!</p>
-
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">From</th>
+                <th scope="col">Original Text</th>
+                <th scope="col">To</th>
+                <th scope="col">Translated Text</th>
+                <th scope="col">Translated On</th>
+              </tr>
+            </thead>
+            <tbody>
+        {% for translation in translationHistory %}
+                <tr>
+                    <td>{{translation.sourceLanguage}}</td>
+                    <td>{{translation.sourceText}}</td>
+                    <td>{{translation.targetLanguage}}</td>
+                    <td>{{translation.targetText}}</td>
+                    <td>{{translation.dateCreated}}</td>
+                </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+    {% comment %} <p style="text-align:center; font-weight:bold; color:white;">This would be where the recent translations<br>went, if we had them!</p> {% endcomment %}
     </div>
 </div>
 
 <script>
     function speakText() {
-        var text = document.querySelector('input[name="t_text"]').value;
-        var lang = document.querySelector('select[name="t_lang"]').value;
+        var text = document.querySelector('input[name="targetText"]').value;
+        var lang = document.querySelector('select[name="targetLanguage"]').value;
         fetch(`/api/speak?text=${text}&lang=${lang}`)
             .then(response => response.blob())
             .then(blob => {
