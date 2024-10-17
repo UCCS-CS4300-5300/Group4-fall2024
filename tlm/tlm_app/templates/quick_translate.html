@@ -41,9 +41,9 @@
             <tbody>
         {% for translation in translationHistory %}
                 <tr>
-                    <td>{{translation.sourceLanguage}}</td>
+                    <td>{{translation.get_sourceLanguage_display}}</td>
                     <td>{{translation.sourceText}}</td>
-                    <td>{{translation.targetLanguage}}</td>
+                    <td>{{translation.get_targetLanguage_display}}</td>
                     <td>{{translation.targetText}}</td>
                     <td>{{translation.dateCreated}}</td>
                 </tr>
