@@ -155,7 +155,52 @@
 
 /* For use with any box that isn't white */
 .secondary-color {
-
+    
     background: linear-gradient(rgba(166,103,201,1), rgba(94,6,142,1));
+    
+}
 
+/* Styling for table header */
+.dark-mode .table th {
+    background-color: #333; 
+    color: #f1f1f1;
+}
+
+/* Styling for form fields */
+.form-control {
+    background-color: #fff; 
+    color: #000; 
+}
+
+/* Sytling for form placeholder */
+.form-control::placeholder {
+    color: #6c757d; 
+}
+
+/* Styling for form placeholder */
+.form-control option {
+    font-weight: bold;
+}
+
+/* Styling for table cells */
+.dark-mode .table td {
+    background-color: #1c1c1c;
+    color: #f1f1f1;
+}
+
+/* Dark mode for recent translations */
+.dark-mode .secondary-color {
+    background: linear-gradient(to right, #333, #666);
+}
+
+/* Dark mode for form fields */
+.dark-mode .form-control {
+    background-color: #1c1c1c; 
+    color: #f1f1f1; 
+    border: 1px solid #444; 
+}
+
+/* Dark mode for form placeholder color */
+.dark-mode .form-control::placeholder {
+    color: #b1b1b1; 
 }

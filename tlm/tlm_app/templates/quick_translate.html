@@ -16,9 +16,9 @@
                 <br>
                 {{ form.targetText }}
                 <br>
-                <button type="button" class="btn btn-color btn-dark" onclick="speakText()">Pronunciation</button>
+                <button type="button" class="btn btn-color btn-dark" id="pronunciationButton" style="display: none;" onclick="speakText()">Pronunciation</button>
             </div>
-            <div style="padding-top: 5px; padding-bottom: 5px;"class="container">
+            <div style="padding-top: 5px; padding-bottom: 5px;" class="container">
                 <input class="btn btn-color btn-dark" type="submit" value="Translate" name="translate">
             </div>
         </div>
@@ -50,7 +50,6 @@
         {% endfor %}
             </tbody>
         </table>
-    {% comment %} <p style="text-align:center; font-weight:bold; color:white;">This would be where the recent translations<br>went, if we had them!</p> {% endcomment %}
     </div>
 </div>
 
@@ -58,7 +57,7 @@
 
 <script>
     function speakText() {
-        var text = document.querySelector('input[name="targetText"]').value;
+        var text = document.querySelector('textarea[name="targetText"]').value;
         var lang = document.querySelector('select[name="targetLanguage"]').value;
         fetch(`/api/speak?text=${text}&lang=${lang}`)
             .then(response => response.blob())
@@ -69,5 +68,21 @@
             })
             .catch(error => console.error('Error:', error));
     }
+
+    function checkButtonVisibility() {
+        var text = document.querySelector('textarea[name="targetText"]').value;
+        var button = document.getElementById('pronunciationButton');
+
+        if (text.trim() !== '') {
+            button.style.display = 'inline-block';
+        } else {
+            button.style.display = 'none';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        checkButtonVisibility(); 
+        document.querySelector('textarea[name="targetText"]').addEventListener('input', checkButtonVisibility);
+    });
 </script>
 {% endblock %}
