@@ -31,9 +31,14 @@ def quickTranslate(request):
             translation.save()
     else:
         form = QuickTranslateForm()
-    translationHistory = UserTranslationHistory.objects.filter(user=request.user)
-    print(translationHistory)
-    context = {'form': form, 'translationHistory': translationHistory}
+
+    context = {'form': form}
+    
+    if request.user.is_authenticated:
+        translationHistory = UserTranslationHistory.objects.filter(user=request.user)
+        print(translationHistory)
+        context = {'form': form, 'translationHistory': translationHistory}
+    
     return render(request, 'quick_translate.html', context)
 
 def settings(request):
