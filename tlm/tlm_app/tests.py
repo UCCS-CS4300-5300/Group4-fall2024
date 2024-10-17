@@ -36,7 +36,7 @@ class UserTranslationHistoryTests(TestCase):
     # Test ability to add to a specific user's translation history
     def test_addTranslationHistory(self):
         newUser = User.objects.create(username='Jane_Doe', email='jD0e@gmail.com', password='b45e32S') # Create new user to assign an entry for translation history
-        newEntry = UserTranslationHistory.objects.create(user=newUser, originalLanguage='Spanish', translatedIntoLanguage='English', originalText='Konnichiwa', translatedText='Hello')
+        newEntry = UserTranslationHistory.objects.create(user=newUser, sourceLanguage='Spanish', sourceText='Konnichiwa', targetLanguage='English', targetText='Hello', dateCreated="2024-10-16 17:12:27.454004")
 
         dummyUser = User.objects.create(username='xXx_johnSmith_xXx', email='john.2000@gmail.com', password='12345') # Create new user to test if correct user is being assigned translation history
 
