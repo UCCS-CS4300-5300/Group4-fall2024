@@ -44,3 +44,13 @@ class UserListEntry(models.Model):
     originalText = models.TextField() # Original text that is being translated
     translatedLanguage = models.CharField(max_length=25) # Language to translate into
     translatedText = models.TextField(blank=True) # Text after translation
+
+# Store the user's prefered settings
+class UserSettings(models.Model):
+    # Enforces a one-to-one relationship
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True, 
+    ) # Foreign key pointing to user to assign settings profile
+    darkModeToggle = models.BooleanField(default=False) # User preference for dark mode on or off
