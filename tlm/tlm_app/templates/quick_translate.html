@@ -2,6 +2,20 @@
 {% block title %}Welcome - The Language Medium{% endblock %}
 {% block content %}
 <h1 style="text-align: center;">Quickly translate words or phrases below!</h1><br>
+
+<!-- Display form errors -->
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    <ul>
+        {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
 <div class='container-fluid text-center shadow rounded'>
     <form action='' method='POST'>
         {% csrf_token %}
@@ -35,19 +49,19 @@
                 <th scope="col">Original Text</th>
                 <th scope="col">To</th>
                 <th scope="col">Translated Text</th>
-                <th scope="col">Translated On</th>
+                {% comment %} <th scope="col">Translated On</th> {% endcomment %}
               </tr>
             </thead>
             <tbody>
-        {% for translation in translationHistory %}
+            {% for translation in translationHistory %}
                 <tr>
                     <td>{{translation.get_sourceLanguage_display}}</td>
                     <td>{{translation.sourceText}}</td>
                     <td>{{translation.get_targetLanguage_display}}</td>
                     <td>{{translation.targetText}}</td>
-                    <td>{{translation.dateCreated}}</td>
+                    {% comment %} <td>{{translation.dateCreated}}</td> {% endcomment %}
                 </tr>
-        {% endfor %}
+            {% endfor %}
             </tbody>
         </table>
     </div>
