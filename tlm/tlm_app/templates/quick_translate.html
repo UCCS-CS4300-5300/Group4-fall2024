@@ -2,20 +2,6 @@
 {% block title %}Welcome - The Language Medium{% endblock %}
 {% block content %}
 <h1 style="text-align: center;">Quickly translate words or phrases below!</h1><br>
-
-<!-- Display form errors -->
-{% if form.errors %}
-<div class="alert alert-danger" role="alert">
-    <ul>
-        {% for field, errors in form.errors.items %}
-            {% for error in errors %}
-                <li>{{ error }}</li>
-            {% endfor %}
-        {% endfor %}
-    </ul>
-</div>
-{% endif %}
-
 <div class='container-fluid text-center shadow rounded'>
     <form action='' method='POST'>
         {% csrf_token %}
@@ -95,7 +81,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        checkButtonVisibility(); 
+        checkButtonVisibility();
         document.querySelector('textarea[name="targetText"]').addEventListener('input', checkButtonVisibility);
     });
 </script>

@@ -22,26 +22,29 @@ def profile(request):
 
 def quickTranslate(request):
     if request.method == 'POST':
-        if request.POST['sourceLanguage'] == request.POST['targetLanguage']:
-            messages.error(request, 'From Language and To Language cannot be the same')
-            form = QuickTranslateForm(request.POST)
+        source_lang = request.POST.get('sourceLanguage')
+        target_lang = request.POST.get('targetLanguage')
+        data = request.POST.copy()
+
+        if source_lang == target_lang:
+            data['targetText'] = data['sourceText']
         else:
-            data = request.POST.copy()
             data['targetText'] = ts.translate_text(data['sourceText'], from_language=data['sourceLanguage'], to_language=data['targetLanguage'])
-            form = QuickTranslateForm(data)
-            if form.is_valid() and request.user.is_authenticated:
-                translation = form.save(commit=False)
-                translation.user = request.user
-                translation.save()
+
+        form = QuickTranslateForm(data)
+        if form.is_valid() and request.user.is_authenticated:
+            translation = form.save(commit=False)
+            translation.user = request.user
+            translation.save()
     else:
         form = QuickTranslateForm()
 
     context = {'form': form}
-    
+
     if request.user.is_authenticated:
         translationHistory = UserTranslationHistory.objects.filter(user=request.user).order_by('-dateCreated')
         context['translationHistory'] = translationHistory
-    
+        
     return render(request, 'quick_translate.html', context)
 
 def settings(request):
