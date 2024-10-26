@@ -61,4 +61,5 @@ class UserSettings(models.Model):
         on_delete=models.CASCADE,
         primary_key=True, 
     ) # Foreign key pointing to user to assign settings profile
-    darkModeToggle = models.BooleanField(default=False) # User preference for dark mode on or off
+    darkModeToggle = models.BooleanField(default=False) # User preference for dark mode on or off\
+    defaultLanguage = models.CharField(max_length=25, default="English") # User preference for default language to translate into
