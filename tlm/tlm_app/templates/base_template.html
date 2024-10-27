@@ -82,8 +82,8 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer fixed-bottom text-center text-lg-start mt-auto"> 
-        <div class="text-center p-3">
+    <footer class="footer fixed-bottom text-center text-lg-start mt-auto">
+         <div class="text-center p-3">
             &copy; 2024 The Language Medium
         </div>
     </footer>
@@ -91,14 +91,25 @@
     <!-- Bootstrap JS (via CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'scripts/script.js' %}"></script>
-    
+
     <!-- Dark Mode Script -->
     <script>
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+        document.addEventListener('DOMContentLoaded', () => {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
 
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+            }
+
+            darkModeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
         });
     </script>
 </body>
