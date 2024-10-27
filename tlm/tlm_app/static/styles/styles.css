@@ -245,3 +245,71 @@
     z-index: 1; /* Ensures the overlay is behind the content */
     /* Considering this is the container holding the image, z-index has to be 1 to go above the image itself */
   }
+
+  /* Styling for Welcome Section */
+.welcome-section {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Dark mode for Welcome Section */
+.dark-mode .welcome-section {
+    background-color: #1a1a1a;
+    color: #f1f1f1;
+}
+
+/* Styling for 3 cards in middle */
+.feature-card {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Dark mode for 3 cards in middle */
+.dark-mode .feature-card {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border: 1px solid #3a3a3a;
+}
+
+/* Styling for Feature Card Description Text */
+.feature-description {
+    color: #000000;
+}
+
+/* Dark mode for Feature Card Description Text */
+.dark-mode .feature-description {
+    color: #ffffff;
+}
+
+/* Dark mode for Get Started button */
+.dark-mode .btn-color {
+    background-color: #333; 
+    color: #f1f1f1; 
+    border: 1px solid #2b2b2b; 
+}
+
+/* Styling for Get Started button hover */
+.dark-mode .btn-color:hover {
+    background-color: #2b2b2b; 
+    color: #ffffff;
+}
+
+/* Dark mode for modal content */
+.dark-mode .modal-content {
+    background-color: #2a2a2a; 
+    color: #f1f1f1; 
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); 
+}
+
+/* Dark mode for modal content buttons */
+.dark-mode .modal-content .btn-color {
+    background-color: #333; 
+    color: #f1f1f1; 
+    border: 1px solid #444; 
+}
+
+/* Styling for modal content buttons hover */
+.dark-mode .modal-content .btn-color:hover {
+    background-color: #555; 
+    color: #ffffff;
+}

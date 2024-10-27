@@ -8,7 +8,7 @@
 
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-8 text-center shadow p-5 rounded">
+        <div class="col-md-8 text-center shadow p-5 rounded welcome-section">
             <h1 class="display-4 mb-3">Welcome to The Language Medium</h1>
             <p class="lead">Quick, reliable translations at your fingertips.</p>
             <button onclick="openModal()" class="btn btn-color btn-lg w-100 mt-3">Get Started</button>
@@ -19,17 +19,17 @@
 <!-- Features Section -->
 <div class="container mt-5">
     <div class="row text-center">
-        <div class="col-md-4 shadow p-4 rounded mb-4">
+        <div class="col-md-4 feature-card shadow p-4 rounded mb-4">
             <h3>Save Custom Phrases</h3>
-            <p class="text-muted">Keep your essential phrases ready, anytime, anywhere.</p>
+            <p class="feature-description">Keep your essential phrases ready, anytime, anywhere.</p>
         </div>
-        <div class="col-md-4 shadow p-4 rounded mb-4">
+        <div class="col-md-4 feature-card shadow p-4 rounded mb-4">
             <h3>Instant Translations</h3>
-            <p class="text-muted">Translate on the go with support for multiple languages.</p>
+            <p class="feature-description">Translate on the go with support for multiple languages.</p>
         </div>
-        <div class="col-md-4 shadow p-4 rounded mb-4">
+        <div class="col-md-4 feature-card shadow p-4 rounded mb-4">
             <h3>Mobile Friendly</h3>
-            <p class="text-muted">Designed to be easy and accessible wherever you are.</p>
+            <p class="feature-description">Designed to be easy and accessible wherever you are.</p>
         </div>
     </div>
 </div>
@@ -41,7 +41,7 @@
 
 <!-- Modal Structure -->
 <div id="getStartedModal" class="modal" onclick="closeModal()">
-    <div class="modal-content shadow rounded p-4" onclick="event.stopPropagation()">
+    <div class="modal-content shadow rounded p-4 modal-body" onclick="event.stopPropagation()">
         <h2 class="mb-4">Get Started</h2>
         <a href="{% url 'about' %}" class="btn btn-color btn-lg w-100 mb-3">Learn More About The Language Medium</a>
         <a href="{% url 'register' %}" class="btn btn-color btn-lg w-100 mb-3">Create an Account</a>
