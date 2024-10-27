@@ -1,7 +1,12 @@
 {% extends 'base_template.html' %}
-
 {% load static %}
-
 {% block content %}
-    About page
+    <div class="banner shadow-lg" style="overflow:hidden;">
+        <div class="sliding-background"></div>
+    </div>
+    <div style="position: relative; margin-inline:auto; max-width: fit-content; z-index: 2; top: 50px;">
+        <img src="{% static 'images/AboutText.png' %}">
+    </div>
+    
+    
 {% endblock %}

@@ -204,3 +204,44 @@
 .dark-mode .form-control::placeholder {
     color: #b1b1b1; 
 }
+
+/* Really cool sliding banner! */
+.sliding-background {
+
+    background: url('../images/AboutBanner.png') repeat-x;
+    height: 403px; /* Height of the banner */
+    width: 7680px;
+    scale: 100%;
+    animation: slide 24s linear infinite;
+
+}
+
+@keyframes slide {
+
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-2560px, 0, 0); /* The image width */
+    }
+}
+
+.banner {
+
+    position: absolute;
+    width: 100%;
+    right: 0px;
+    top: 76px;
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1; /* Ensures the overlay is behind the content */
+    /* Considering this is the container holding the image, z-index has to be 1 to go above the image itself */
+  }
