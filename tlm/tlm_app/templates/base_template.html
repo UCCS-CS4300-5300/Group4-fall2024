@@ -29,7 +29,13 @@
                         <li><a href="{% url 'index' %}" id="home-page-redirect">Home</a></li>
                         <li><a href="{% url 'about' %}" id="about-page-redirect">About</a></li>
                         <li><a href="{% url 'quick_Translate' %}" id="qTranslate-page-redirect">Quick Translate</a></li>
+                        
+                        {% if user.is_authenticated %}
+
                         <li><a href="{% url 'lists' %}" id="list-page-redirect">My Lists</a></li>
+
+                        {% endif %}
+
                         <li><a href="{% url 'settings' %}" id="settings-page-redirect">Settings</a></li>
                     </ul>
                 </div>
