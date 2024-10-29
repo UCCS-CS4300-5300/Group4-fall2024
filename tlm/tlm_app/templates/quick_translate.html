@@ -26,9 +26,10 @@
 </div>
 <br>
 <div style="margin: auto; width: 50%;" class="container-fluid shadow rounded secondary-color">
+    {% if user.is_authenticated %}
     <h1 style="color: white; text-align: center; padding-top: 5px;">Recent translations</h1>
     <div style="padding:5px;">
-        <table class="table">
+        <table class="table table-striped table-hover">
             <thead>
               <tr>
                 <th scope="col">From</th>
@@ -51,6 +52,7 @@
             </tbody>
         </table>
     </div>
+    {% endif %}
 </div>
 
 <div style="padding-bottom: 100px;"></div>
