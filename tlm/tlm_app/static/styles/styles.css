@@ -220,16 +220,16 @@
 @keyframes slide {
 
     0% {
-      transform: translate3d(0, 0, 0);
+      transform: translate3d(-100px, 0, 0);
     }
     100% {
-      transform: translate3d(-2560px, 0, 0); /* The image width */
+      transform: translate3d(-2660px, 0, 0); /* The image width */
     }
 }
 
 .banner {
 
-    position: absolute;
+    position: fixed;
     right: 0%;
     top: 76px;
     width: 100%;
