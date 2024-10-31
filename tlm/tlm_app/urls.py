@@ -17,6 +17,6 @@ urlpatterns = [
     path('settings', views.settings, name='settings'), # Settings page url 
     path('register', views.register, name='register'), # Register page url
     path('logout/', custom_logout_view, name='logout'), # Logout page url
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'), # Login page url
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='appLogin'), # Login page url
     path('api/speak/', views.speak, name='speak'),
 ]

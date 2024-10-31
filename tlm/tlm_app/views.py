@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.http import JsonResponse, HttpResponse
 from gtts import gTTS
+from django.contrib.auth import login
 
 # Create your views here.
 def index(request):
@@ -54,9 +55,11 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Your account has been created! You are now able to log in.')
+            newUser = form.save()
+
+            login(request, newUser)
+
+            messages.success(request, f'Your account has been created! You are now logged in!')
             return redirect('index')
         else:
             messages.error(request, 'There was an error with your submission. Please check the form and try again.')
@@ -64,7 +67,7 @@ def register(request):
         form = UserRegisterForm()
     return render(request, 'register.html', {'form': form})
 
-def login(request):
+def appLogin(request):
     return render(request, 'login.html')
 
 def logout(request):
