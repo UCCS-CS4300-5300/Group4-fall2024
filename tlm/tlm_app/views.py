@@ -59,7 +59,15 @@ def register(request):
 
             login(request, newUser)
 
+            # Creates a user settings profile for user
+            settingsProfile = UserSettings.objects.create(
+                user = newUser,
+                darkModeToggle = False,
+                defaultLanguage = "English"
+            )
+
             messages.success(request, f'Your account has been created! You are now logged in!')
+            
             return redirect('index')
         else:
             messages.error(request, 'There was an error with your submission. Please check the form and try again.')
