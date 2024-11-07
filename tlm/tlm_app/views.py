@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import QuickTranslateForm, UserRegisterForm
-from .models import UserTranslationHistory
+from .models import *
 import translators as ts
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -67,7 +67,7 @@ def register(request):
             )
 
             messages.success(request, f'Your account has been created! You are now logged in!')
-            
+
             return redirect('index')
         else:
             messages.error(request, 'There was an error with your submission. Please check the form and try again.')
