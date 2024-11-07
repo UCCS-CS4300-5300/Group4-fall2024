@@ -3,25 +3,25 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+sourceOptions = (
+    ('auto', 'Auto-Detect'),
+    ('en', 'English'),
+    ('fr', 'French'),
+    ('es', 'Spanish'),
+    ('de', 'German'),
+    ('it', 'Italian'),
+)
+
+targetOptions = (
+    ('en', 'English'),
+    ('fr', 'French'),
+    ('es', 'Spanish'),
+    ('de', 'German'),
+    ('it', 'Italian'),
+)
+
 # Store the translation history of a user
 class UserTranslationHistory(models.Model):
-    sourceOptions = (
-        ('auto', 'Auto-Detect'),
-        ('en', 'English'),
-        ('fr', 'French'),
-        ('es', 'Spanish'),
-        ('de', 'German'),
-        ('it', 'Italian'),
-    )
-
-    targetOptions = (
-        ('en', 'English'),
-        ('fr', 'French'),
-        ('es', 'Spanish'),
-        ('de', 'German'),
-        ('it', 'Italian'),
-    )
-
     user = models.ForeignKey(User, unique=False, on_delete=models.CASCADE) # Foriegn key assigned to user for determining unique translation history
     sourceLanguage = models.CharField(max_length=25, default=sourceOptions[0], choices=sourceOptions) # Language of the text that is being translated
     sourceText = models.TextField() # Original text that is being translated
@@ -48,10 +48,10 @@ class UserListObject(models.Model):
 # Entries in a user created list 
 class UserListEntry(models.Model):
     userList = models.ForeignKey(UserListObject, on_delete=models.CASCADE) # Assigns list entry to a list
-    originalLanguage = models.CharField(max_length=25) # Language of the text that is being translated
-    originalText = models.TextField() # Original text that is being translated
-    translatedLanguage = models.CharField(max_length=25) # Language to translate into
-    translatedText = models.TextField(blank=True) # Text after translation
+    sourceLanguage = models.CharField(max_length=25, default=sourceOptions[0], choices=sourceOptions) # Language of the text that is being translated
+    sourceText = models.TextField() # Original text that is being translated
+    targetLanguage = models.CharField(max_length=25, default=targetOptions[0], choices=targetOptions) # Language to translate into
+    targetText = models.TextField(blank=True) # Text after translation
 
 # Store the user's prefered settings
 class UserSettings(models.Model):

@@ -3,5 +3,16 @@
 {% load static %}
 
 {% block content %}
-    My Lists
+    <h2>My Lists</h2>
+    <form action="{% url 'listEntries'%}" method='POST'>
+        {% csrf_token %}
+        <ul class="list-group">
+        {% for list in userLists%}
+        <li class="list-group-item">
+            <p>{{ list.listTitle }}</p>
+            <button class="btn btn-color btn-dark" type="submit" name="selectedList" value="{{ list.pk }}">View Entries</button>
+        </li>
+        {% endfor %}
+        </ul>
+    </form>
 {% endblock %}

@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import QuickTranslateForm, UserRegisterForm
-from .models import UserTranslationHistory
+from .models import UserTranslationHistory, UserListObject, UserListEntry
 import translators as ts
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.http import JsonResponse, HttpResponse
 from gtts import gTTS
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -15,8 +16,18 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def myLists(request):
-    return render(request, 'lists.html')
+    userLists = UserListObject.objects.filter(user=request.user)
+    context = {'userLists': userLists}
+    return render(request, 'lists.html', context)
+
+@login_required
+def listEntries(request):
+    selectedList = get_object_or_404(UserListObject, pk=request.POST.get('selectedList'))
+    listEntries = UserListEntry.objects.filter(userList = selectedList)
+    context = {"entries": listEntries}
+    return render(request, 'list_content.html', context)
 
 def profile(request):
     return render(request, 'profile.html')
