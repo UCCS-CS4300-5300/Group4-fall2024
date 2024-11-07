@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import QuickTranslateForm, UserRegisterForm
-from .models import UserTranslationHistory, UserListObject, UserListEntry
+from .models import *
 import translators as ts
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -70,7 +70,15 @@ def register(request):
 
             login(request, newUser)
 
+            # Creates a user settings profile for user
+            settingsProfile = UserSettings.objects.create(
+                user = newUser,
+                darkModeToggle = False,
+                defaultLanguage = "English"
+            )
+
             messages.success(request, f'Your account has been created! You are now logged in!')
+
             return redirect('index')
         else:
             messages.error(request, 'There was an error with your submission. Please check the form and try again.')
