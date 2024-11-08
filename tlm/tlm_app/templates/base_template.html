@@ -97,26 +97,26 @@
 
     <!-- Dark Mode Script -->
     {% if user.is_authenticated %}
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
 
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'toggleDarkMode', true);
-
-            const response = JSON.parse(xhr.responseText);
-
-            if (response.darkModeStatus === 'True') {
-                document.body.classList.add('dark-mode');
-            } 
-    
-            xhr.send();
-    });
+            fetch('toggleDarkMode') 
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success === 1 && data.darkModeStatus === 'True') {
+                        body.classList.add('dark-mode');
+                    } 
+                    else {
+                        body.classList.remove('dark-mode')
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching dark mode status:', error);
+                });
+        });
     </script>
-
-    {% else %}
-
+{% else %}
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
@@ -126,7 +126,7 @@
             }
         });
     </script>
+{% endif %}
 
-    {% endif %}
 </body>
 </html>

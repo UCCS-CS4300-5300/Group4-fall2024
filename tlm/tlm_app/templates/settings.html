@@ -101,16 +101,28 @@
     {% if user.is_authenticated %}
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
             const darkModeCheckbox = document.getElementById('darkModeCheckbox');
             const body = document.body;
+
+            fetch('toggleDarkMode') 
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success === 1 && data.darkModeStatus === 'True') {
+                        darkModeCheckbox.checked = true
+                    } 
+                    else {
+                        darkModeCheckbox.checked = false
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching dark mode status:', error);
+                });
 
             darkModeCheckbox.addEventListener('change', () => {
                 body.classList.toggle('dark-mode');
 
                 const darkModeStatus = darkModeCheckbox.checked
-
-                console.log('Dark Mode Status:', darkModeStatus);
 
                 const xhr = new XMLHttpRequest();
                 xhr.open('POST', 'toggleDarkMode', true);

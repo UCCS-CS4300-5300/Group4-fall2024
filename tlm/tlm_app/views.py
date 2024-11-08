@@ -72,18 +72,22 @@ def toggleDarkMode(request):
         try:
             data = json.loads(request.body)
             darkModeStatus = data.get('darkModeStatus')
-        
+
+            if darkModeStatus == 'True':
+                darkModeStatus = True
+            elif darkModeStatus == 'False':
+                darkModeStatus = False
+            else:
+                darkModeStatus = bool(darkModeStatus) 
+
             user = request.user  
 
-            if user:
+            if user.is_authenticated:
                 darkModeSetting, created = UserSettings.objects.get_or_create(user=user)
                 
-                if darkModeStatus:
-                    darkModeSetting.darkModeToggle = True
-                else:
-                    darkModeSetting.darkModeToggle = False
-
+                darkModeSetting.darkModeToggle = darkModeStatus
                 darkModeSetting.save()
+
 
                 return JsonResponse({'success': 1})
             else:
@@ -96,7 +100,6 @@ def toggleDarkMode(request):
         if user.is_authenticated:
             try:
                 darkModeSetting = UserSettings.objects.get(user=user)
-                
                 return JsonResponse({'success': 1, 'darkModeStatus': 'True' if darkModeSetting.darkModeToggle else 'False'})
             except UserSettings.DoesNotExist:
                 return JsonResponse({'success': 0, 'darkModeStatus': 'False'})
@@ -104,6 +107,7 @@ def toggleDarkMode(request):
             return JsonResponse({'success': 0, 'error': 'User not authenticated'})
     else:
         return JsonResponse({'success': 0, 'error': 'Invalid request method'})
+
 
 def register(request):
     if request.method == 'POST':
