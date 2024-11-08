@@ -20,4 +20,5 @@ urlpatterns = [
     path('logout/', custom_logout_view, name='logout'), # Logout page url
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='appLogin'), # Login page url
     path('api/speak/', views.speak, name='speak'),
+    path('toggleDarkMode', views.toggleDarkMode, name='toggleDarkMode'),
 ]

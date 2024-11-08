@@ -8,6 +8,10 @@ from django.http import JsonResponse, HttpResponse
 from gtts import gTTS
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import json
+from django.db.models import *
 
 # Create your views here.
 def index(request):
@@ -61,6 +65,45 @@ def quickTranslate(request):
 
 def settings(request):
     return render(request, 'settings.html')
+
+@csrf_exempt
+def toggleDarkMode(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            darkModeStatus = data.get('darkModeStatus')
+        
+            user = request.user  
+
+            if user:
+                darkModeSetting, created = UserSettings.objects.get_or_create(user=user)
+                
+                if darkModeStatus:
+                    darkModeSetting.darkModeToggle = True
+                else:
+                    darkModeSetting.darkModeToggle = False
+
+                darkModeSetting.save()
+
+                return JsonResponse({'success': 1})
+            else:
+                return JsonResponse({'success': 0, 'error': 'User not found'})
+
+        except json.JSONDecodeError:
+            return JsonResponse({'success': 0, 'error': 'Invalid JSON data'})
+    elif request.method == 'GET':
+        user = request.user
+        if user.is_authenticated:
+            try:
+                darkModeSetting = UserSettings.objects.get(user=user)
+                
+                return JsonResponse({'success': 1, 'darkModeStatus': 'True' if darkModeSetting.darkModeToggle else 'False'})
+            except UserSettings.DoesNotExist:
+                return JsonResponse({'success': 0, 'darkModeStatus': 'False'})
+        else:
+            return JsonResponse({'success': 0, 'error': 'User not authenticated'})
+    else:
+        return JsonResponse({'success': 0, 'error': 'Invalid request method'})
 
 def register(request):
     if request.method == 'POST':

@@ -97,6 +97,34 @@
             border-radius: 50%;
         }
     </style>
+
+    {% if user.is_authenticated %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const darkModeCheckbox = document.getElementById('darkModeCheckbox');
+            const body = document.body;
+
+            darkModeCheckbox.addEventListener('change', () => {
+                body.classList.toggle('dark-mode');
+
+                const darkModeStatus = darkModeCheckbox.checked
+
+                console.log('Dark Mode Status:', darkModeStatus);
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'toggleDarkMode', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                
+                xhr.send(JSON.stringify({
+                    darkModeStatus: darkModeStatus
+                }));
+            });
+        });
+    </script>
+
+    {% else %}
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const darkModeCheckbox = document.getElementById('darkModeCheckbox');
@@ -109,6 +137,9 @@
 
             darkModeCheckbox.addEventListener('change', () => {
                 body.classList.toggle('dark-mode');
+
+                console.log(darkModeCheckbox.checked)
+
                 if (body.classList.contains('dark-mode')) {
                     localStorage.setItem('darkMode', 'enabled');
                 } else {
@@ -117,4 +148,6 @@
             });
         });
     </script>
+
+    {% endif %}
 {% endblock %}

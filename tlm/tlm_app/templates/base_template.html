@@ -96,24 +96,37 @@
     <script src="{% static 'scripts/script.js' %}"></script>
 
     <!-- Dark Mode Script -->
+    {% if user.is_authenticated %}
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'toggleDarkMode', true);
+
+            const response = JSON.parse(xhr.responseText);
+
+            if (response.darkModeStatus === 'True') {
+                document.body.classList.add('dark-mode');
+            } 
+    
+            xhr.send();
+    });
+    </script>
+
+    {% else %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
 
             if (localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('dark-mode');
             }
-
-            darkModeToggle.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                if (body.classList.contains('dark-mode')) {
-                    localStorage.setItem('darkMode', 'enabled');
-                } else {
-                    localStorage.setItem('darkMode', 'disabled');
-                }
-            });
         });
     </script>
+
+    {% endif %}
 </body>
 </html>
