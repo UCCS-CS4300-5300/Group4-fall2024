@@ -21,4 +21,5 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='appLogin'), # Login page url
     path('api/speak/', views.speak, name='speak'),
     path('toggleDarkMode', views.toggleDarkMode, name='toggleDarkMode'),
+    path('lists/addToList', views.addToUserList, name='addToList'),
 ]

@@ -108,6 +108,23 @@ def toggleDarkMode(request):
     else:
         return JsonResponse({'success': 0, 'error': 'Invalid request method'})
 
+@csrf_exempt
+def addToUserList(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            listName = data.get('userListTitle')
+
+            newList = UserListObject.objects.update_or_create(
+                user = request.user,
+                listTitle = listName
+            )
+
+            return JsonResponse({'success': 1, 'list': 'New List Created'})
+        except json.JSONDecodeError:
+            return JsonResponse({'success': 0, 'error': 'Invalid JSON data'})
+    else:
+        return JsonResponse({'success': 0, 'error': 'Invalid request method'})
 
 def register(request):
     if request.method == 'POST':
