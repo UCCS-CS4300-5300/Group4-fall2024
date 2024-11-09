@@ -103,16 +103,18 @@
                 userListTitle : listTitle
             }));
 
-            closeModal()
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    closeModal();
+                    window.location.reload(); 
+                } else {
+                    console.error('Failed to add list:', xhr.responseText);
+                }
+            };
 
-            
-        }
-
-        function displayValue() {
-            const formValue = document.getElementById("listName")
-            const listTitle = formValue.value
-            
-            console.log(listTitle)
+            xhr.send(JSON.stringify({
+                userListTitle: listTitle
+            }));
         }
     </script>
 {% endblock %}
