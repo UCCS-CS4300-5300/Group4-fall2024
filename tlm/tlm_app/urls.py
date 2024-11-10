@@ -22,4 +22,6 @@ urlpatterns = [
     path('api/speak/', views.speak, name='speak'),
     path('toggleDarkMode', views.toggleDarkMode, name='toggleDarkMode'),
     path('lists/addToList', views.addToUserList, name='addToList'),
+    path('profile/update/', views.update_account, name='update_account'),  # Update account URL
+
 ]

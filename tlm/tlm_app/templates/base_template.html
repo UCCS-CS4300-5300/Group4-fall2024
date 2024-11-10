@@ -101,7 +101,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
 
-            fetch('toggleDarkMode') 
+            fetch('/toggleDarkMode') 
                 .then(response => response.json())
                 .then(data => {
                     if (data.success === 1 && data.darkModeStatus === 'True') {

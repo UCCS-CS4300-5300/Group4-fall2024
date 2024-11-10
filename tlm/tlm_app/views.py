@@ -163,3 +163,27 @@ def speak(request):
     response = HttpResponse(content_type='audio/mpeg')
     tts.write_to_fp(response)
     return response
+
+
+@login_required
+def update_account(request):
+    if request.method == 'POST':
+        user = request.user
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+
+        # Update user information
+        user.username = username
+        user.email = email
+        user.save()
+
+        # Display success message and redirect to profile page
+        messages.success(request, 'Account updated successfully!')
+        return redirect('profile')
+    else:
+        # Render profile page with existing values
+        context = {
+            'user': user,
+        }
+        return render(request, 'profile.html', context)
+
