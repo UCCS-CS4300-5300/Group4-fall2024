@@ -306,3 +306,35 @@
     background-color: #555; 
     color: #ffffff;
 }
+
+/* Styling for definitions */
+.definition-container {
+    background-color: #f9f9f9;
+    color: #333;
+    padding: 15px;
+    max-width: 300px;
+    text-align: left;
+    float: right;
+    margin-top: 0px;
+    margin-left: 50px;
+}
+
+/* Dark Mode for Definition*/
+.dark-mode .definition-container {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}
+
+/* Styling for definitions box*/
+.definition-box {
+    position: absolute;
+    top: 0;
+    right: 0px; 
+    width: 200px;
+    padding: 15px;
+    background-color: #333;
+    color: #f1f1f1;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}

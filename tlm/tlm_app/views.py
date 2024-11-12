@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json
 from django.db.models import *
+import requests
 
 # Create your views here.
 def index(request):
@@ -45,7 +46,7 @@ def quickTranslate(request):
         if source_lang == target_lang:
             data['targetText'] = data['sourceText']
         else:
-            data['targetText'] = ts.translate_text(data['sourceText'], from_language=data['sourceLanguage'], to_language=data['targetLanguage'])
+            data['targetText'] = ts.translate_text(data['sourceText'], from_language=source_lang, to_language=target_lang)
 
         form = QuickTranslateForm(data)
         if form.is_valid() and request.user.is_authenticated:
@@ -62,6 +63,23 @@ def quickTranslate(request):
         context['translationHistory'] = translationHistory
         
     return render(request, 'quick_translate.html', context)
+
+def get_definition(request):
+    word = request.GET.get('word')
+    lang = request.GET.get('lang', 'en')  
+
+    if word:
+        api_url = f"https://api.dictionaryapi.dev/api/v2/entries/{lang}/{word}"
+        response = requests.get(api_url)
+
+        if response.status_code == 200:
+            definitions = response.json()[0].get('meanings', [])
+            definition_texts = [meaning['definitions'][0]['definition'] for meaning in definitions]
+            return JsonResponse({'definitions': definition_texts})
+        else:
+            return JsonResponse({'error': 'No definition found for the word.'})
+    return JsonResponse({'error': 'Invalid request.'})
+
 
 def settings(request):
     return render(request, 'settings.html')

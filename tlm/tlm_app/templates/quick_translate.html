@@ -2,27 +2,35 @@
 {% block title %}Welcome - The Language Medium{% endblock %}
 {% block content %}
 <h1 style="text-align: center;">Quickly translate words or phrases below!</h1><br>
-<div class='container-fluid text-center shadow rounded'>
-    <form action='' method='POST'>
-        {% csrf_token %}
-        <div class='row'>
-            <div style="padding-top: 5px;" class='col'>
-                {{ form.sourceLanguage }}
-                <br>
-                {{ form.sourceText }}
-            </div>
-            <div style="padding-top: 5px;" class='col'>
-                {{ form.targetLanguage }}
-                <br>
-                {{ form.targetText }}
-                <br>
-                <button type="button" class="btn btn-color btn-dark" id="pronunciationButton" style="display: none;" onclick="speakText()">Pronunciation</button>
+<div class="translation-container position-relative">
+    <div class='container-fluid text-center shadow rounded'>
+        <form action='' method='POST'>
+            {% csrf_token %}
+            <div class='row'>
+                <div style="padding-top: 5px;" class='col'>
+                    {{ form.sourceLanguage }}
+                    <br>
+                    {{ form.sourceText }}
+                </div>
+                <div style="padding-top: 5px;" class='col'>
+                    {{ form.targetLanguage }}
+                    <br>
+                    {{ form.targetText }}
+                    <br>
+                    <button type="button" class="btn btn-color btn-dark" id="pronunciationButton" style="display: none;" onclick="speakText()">Pronunciation</button>
+                    <button type="button" class="btn btn-color btn-dark" id="definitionButton" style="display: none;" onclick="fetchDefinition()">Definition</button>
+                </div>
             </div>
             <div style="padding-top: 5px; padding-bottom: 5px;" class="container">
                 <input class="btn btn-color btn-dark" type="submit" value="Translate" name="translate">
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+    <div id="definitionBox" class="definition-box" style="display: none;">
+        <strong>Definition:</strong>
+        <p id="definitionContent"></p>
+    </div>
+</form>
 </div>
 <br>
 <div style="margin: auto; width: 50%;" class="container-fluid shadow rounded secondary-color">
@@ -58,7 +66,7 @@
 <div style="padding-bottom: 100px;"></div>
 
 <script>
-    function speakText() {
+     function speakText() {
         var text = document.querySelector('textarea[name="targetText"]').value;
         var lang = document.querySelector('select[name="targetLanguage"]').value;
         fetch(`/api/speak?text=${text}&lang=${lang}`)
@@ -71,20 +79,54 @@
             .catch(error => console.error('Error:', error));
     }
 
-    function checkButtonVisibility() {
-        var text = document.querySelector('textarea[name="targetText"]').value;
-        var button = document.getElementById('pronunciationButton');
+    function toggleButtonVisibility() {
+        const sourceText = document.querySelector('textarea[name="sourceText"]').value;
+        const targetText = document.querySelector('textarea[name="targetText"]').value;
+        const pronunciationButton = document.getElementById('pronunciationButton');
+        const definitionButton = document.getElementById('definitionButton');
 
-        if (text.trim() !== '') {
-            button.style.display = 'inline-block';
-        } else {
-            button.style.display = 'none';
+        pronunciationButton.style.display = targetText.trim() !== '' ? 'inline-block' : 'none';
+        definitionButton.style.display = sourceText.trim().split(/\s+/).length === 1 && sourceText.trim() !== '' ? 'inline-block' : 'none';
+    }
+
+    function fetchDefinition() {
+        const word = document.querySelector('textarea[name="sourceText"]').value;
+        let lang = document.querySelector('select[name="sourceLanguage"]').value;
+
+        if (lang === 'auto-detect') {
+            lang = 'en'; 
+        }
+
+        if (word.trim()) {
+            fetch(`/api/get-definition/?word=${word}&lang=${lang}`)
+                .then(response => response.json())
+                .then(data => {
+                    const definitionBox = document.getElementById('definitionBox');
+                    const definitionContent = document.getElementById('definitionContent');
+                    
+                    if (data.definitions) {
+                        definitionContent.innerHTML = data.definitions.join("<br>");
+                        definitionBox.style.display = 'block';
+                    } else {
+                        definitionContent.textContent = "No definition found for this word.";
+                        definitionBox.style.display = 'block';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
         }
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        checkButtonVisibility();
-        document.querySelector('textarea[name="targetText"]').addEventListener('input', checkButtonVisibility);
+        toggleButtonVisibility();
+        document.querySelector('textarea[name="sourceText"]').addEventListener('input', toggleButtonVisibility);
+        document.querySelector('textarea[name="targetText"]').addEventListener('input', toggleButtonVisibility);
+
+        document.addEventListener('click', function(event) {
+            const definitionBox = document.getElementById('definitionBox');
+            if (!definitionBox.contains(event.target) && !event.target.matches('#definitionButton')) {
+                definitionBox.style.display = 'none';
+            }
+        });
     });
 </script>
 {% endblock %}

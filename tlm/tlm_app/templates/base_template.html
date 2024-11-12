@@ -29,7 +29,7 @@
                         <li><a href="{% url 'index' %}" id="home-page-redirect">Home</a></li>
                         <li><a href="{% url 'about' %}" id="about-page-redirect">About</a></li>
                         <li><a href="{% url 'quick_Translate' %}" id="qTranslate-page-redirect">Quick Translate</a></li>
-                        
+
                         {% if user.is_authenticated %}
 
                         <li><a href="{% url 'lists' %}" id="list-page-redirect">My Lists</a></li>
@@ -83,6 +83,10 @@
         <!-- Child pages can put their content here -->
         {% endblock %}
     </div>
+    <div class="definition-container shadow rounded" id="definitionContainer" style="display: none;">
+        <h5>Definition:</h5>
+        <p id="definitionText">Click on "Definition" to view the meaning.</p>
+    </div>
 
     <!-- Footer -->
     <footer class="footer fixed-bottom text-center text-lg-start mt-auto">
@@ -116,7 +120,7 @@
                 });
         });
     </script>
-{% else %}
+    {% else %}
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
@@ -126,7 +130,66 @@
             }
         });
     </script>
-{% endif %}
+    {% endif %}
+
+    <script>
+        function speakText() {
+            const text = document.querySelector('textarea[name="targetText"]').value;
+            const lang = document.querySelector('select[name="targetLanguage"]').value;
+            fetch(`/api/speak?text=${text}&lang=${lang}`)
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const audio = new Audio(url);
+                    audio.play();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function toggleButtonsVisibility() {
+            const sourceText = document.querySelector('textarea[name="sourceText"]').value.trim();
+            const targetText = document.querySelector('textarea[name="targetText"]').value.trim();
+            
+            const pronunciationButton = document.getElementById('pronunciationButton');
+            const definitionButton = document.getElementById('definitionButton');
+
+            pronunciationButton.style.display = targetText ? 'inline-block' : 'none';
+            definitionButton.style.display = (sourceText && sourceText.split(/\s+/).length === 1) ? 'inline-block' : 'none';
+        }
+
+        function fetchDefinition() {
+            const word = document.querySelector('textarea[name="sourceText"]').value;
+            let lang = document.querySelector('select[name="sourceLanguage"]').value;
+
+            if (lang === 'auto-detect') {
+                lang = 'en'; 
+            }
+
+            if (word.trim()) {
+                fetch(`/api/get-definition/?word=${word}&lang=${lang}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const definitionContainer = document.getElementById('definitionContainer');
+                        const definitionText = document.getElementById('definitionText');
+
+                        if (data.definitions) {
+                            definitionText.innerText = data.definitions.join("\n");
+                        } else {
+                            definitionText.innerText = "No definition found for this word.";
+                        }
+                        definitionContainer.style.display = 'block';
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleButtonsVisibility();
+
+            document.querySelector('textarea[name="sourceText"]').addEventListener('input', toggleButtonsVisibility);
+            document.querySelector('textarea[name="targetText"]').addEventListener('input', toggleButtonsVisibility);
+        });
+    </script>
 
 </body>
 </html>

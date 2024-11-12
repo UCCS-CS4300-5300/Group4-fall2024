@@ -23,5 +23,6 @@ urlpatterns = [
     path('toggleDarkMode', views.toggleDarkMode, name='toggleDarkMode'),
     path('lists/addToList', views.addToUserList, name='addToList'),
     path('profile/update/', views.update_account, name='update_account'),  # Update account URL
+    path('api/get-definition/', views.get_definition, name='get_definition'),
 
 ]
