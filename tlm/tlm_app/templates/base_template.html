@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
 </head>
 <body>
+    <script>
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+
     <!-- Unified Navbar -->
     <nav class="navbar navbar-dark navbar-custom shadow-lg">
         <div class="container-fluid d-flex justify-content-between align-items-center">
@@ -102,7 +108,6 @@
     <!-- Dark Mode Script -->
     {% if user.is_authenticated %}
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
             const body = document.body;
 
             fetch('/toggleDarkMode') 
@@ -118,17 +123,6 @@
                 .catch(error => {
                     console.error('Error fetching dark mode status:', error);
                 });
-        });
-    </script>
-    {% else %}
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const body = document.body;
-
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                body.classList.add('dark-mode');
-            }
-        });
     </script>
     {% endif %}
 
