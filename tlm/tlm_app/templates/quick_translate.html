@@ -44,6 +44,7 @@
                 <th scope="col">Original Text</th>
                 <th scope="col">To</th>
                 <th scope="col">Translated Text</th>
+                <th scope="col">Add Translation to List</th>
                 {% comment %} <th scope="col">Translated On</th> {% endcomment %}
               </tr>
             </thead>
@@ -54,6 +55,7 @@
                     <td>{{translation.sourceText}}</td>
                     <td>{{translation.get_targetLanguage_display}}</td>
                     <td>{{translation.targetText}}</td>
+                    <td><button type="button" class="btn btn-color btn-dark listButtons" onclick="popUpList(this)">+</button></td>
                     {% comment %} <td>{{translation.dateCreated}}</td> {% endcomment %}
                 </tr>
             {% endfor %}
@@ -63,10 +65,98 @@
     {% endif %}
 </div>
 
+<!-- Modal Structure -->
+<div id="userListModal" class="modal" onclick="closeModal()">
+    <div class="modal-content shadow rounded p-4 modal-body" onclick="event.stopPropagation()">
+        <h2 class="mb-4" id="listHeader">Add Translation to a List</h2>
+
+        <!-- User Lists Section -->
+        <div id="userListItems">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for list in userLists %}
+                        <tr>
+                            <td>{{ list.listTitle }}</td>
+                            <td><button type="button" class="btn btn-color btn-dark listButtons" onclick="addToList(this)">+</button></td>
+                            <div style="padding-bottom: 1em;"></div>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div style="padding-bottom: 1em;"></div>
+    </div>
+</div>
+
 <div style="padding-bottom: 100px;"></div>
 
 <script>
-     function speakText() {
+    let sourceLanguage = ""
+    let sourceText = ""
+    let targetLanguage = ""
+    let targetText = ""
+
+    function openModal() {
+        const modal = document.getElementById("userListModal");
+        modal.style.display = "flex";
+        setTimeout(() => modal.classList.add("show"), 10); 
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("userListModal");
+        modal.classList.remove("show");
+        setTimeout(() => modal.style.display = "none", 300);  
+    }
+
+    function popUpList(button) {
+        const row = button.closest('tr');
+
+        sourceLanguage = row.cells[0].innerText;
+        sourceText = row.cells[1].innerText;
+        targetLanguage = row.cells[2].innerText;
+        targetText = row.cells[3].innerText;
+
+        openModal()
+    }
+
+    function addToList(button) {
+        const row = button.closest('tr');
+
+        const listTile = row.cells[0].innerText
+
+        const data = {
+            userListTitle: listTile,
+            sourceLanguage: sourceLanguage,
+            sourceText: sourceText,
+            targetLanguage: targetLanguage,
+            targetText: targetText
+        };
+
+        fetch('{% url "addEntry" %}', {
+            method : 'POST',
+            headers: {
+                'Content-Type': 'application/json',  
+            },
+            body: JSON.stringify(data) 
+        })
+        .then(response => response.json()) 
+        .then(data => {
+            console.log('Success:', data);
+            closeModal(); 
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        closeModal()
+    }
+
+    function speakText() {
         var text = document.querySelector('textarea[name="targetText"]').value;
         var lang = document.querySelector('select[name="targetLanguage"]').value;
         fetch(`/api/speak?text=${text}&lang=${lang}`)
