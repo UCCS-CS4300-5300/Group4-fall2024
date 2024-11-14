@@ -26,7 +26,7 @@ class SuperUserTestCases(TestCase):
     ''' def test_devTeamAreSuperUsers(self):
         superuserList = User.objects.filter(is_superuser=True)
         self.assertIsNotNone(superuserList.filter(username='cameron'))
-        self.assertIsNotNone(superuserList.filter(username='michael'))
+        self.assertIsNotNone(superuserList.filter(username='michael'))pip 
         self.assertIsNotNone(superuserList.filter(username='cole'))
         self.assertIsNotNone(superuserList.filter(username='brett'))
         self.assertIsNotNone(superuserList.filter(username='aman')) '''

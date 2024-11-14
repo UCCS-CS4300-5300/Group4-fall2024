@@ -26,3 +26,4 @@ urllib3==2.2.3
 wheel==0.42.0
 gtts==2.5.3
 click==8.1.7
+flake8==6.1.0
