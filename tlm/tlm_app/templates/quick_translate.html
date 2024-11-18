@@ -72,6 +72,9 @@
 
         <!-- User Lists Section -->
         <div id="userListItems">
+            {% if not userLists%}
+            <p id="listHeader">No Lists Found</p>
+            {% else %}
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -87,6 +90,7 @@
                     {% endfor %}
                 </tbody>
             </table>
+            {% endif %}
         </div>
 
         <div style="padding-bottom: 1em;"></div>
