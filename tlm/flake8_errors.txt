@@ -1,0 +1,183 @@
+./tlm/settings.py:27:80: E501 line too long (81 > 79 characters)
+./tlm/settings.py:107:80: E501 line too long (91 > 79 characters)
+./tlm/settings.py:110:80: E501 line too long (81 > 79 characters)
+./tlm/settings.py:113:80: E501 line too long (82 > 79 characters)
+./tlm/settings.py:116:80: E501 line too long (83 > 79 characters)
+./tlm_app/admin.py:2:1: F403 'from .models import *' used; unable to detect undefined names
+./tlm_app/admin.py:5:21: F405 'UserTranslationHistory' may be undefined, or defined from star imports: .models
+./tlm_app/admin.py:6:21: F405 'UserListObject' may be undefined, or defined from star imports: .models
+./tlm_app/admin.py:7:21: F405 'UserListEntry' may be undefined, or defined from star imports: .models
+./tlm_app/forms.py:6:1: E302 expected 2 blank lines, found 1
+./tlm_app/forms.py:9:80: E501 line too long (81 > 79 characters)
+./tlm_app/forms.py:12:80: E501 line too long (85 > 79 characters)
+./tlm_app/forms.py:14:80: E501 line too long (85 > 79 characters)
+./tlm_app/forms.py:17:1: E302 expected 2 blank lines, found 1
+./tlm_app/forms.py:19:1: W293 blank line contains whitespace
+./tlm_app/forms.py:21:13: E117 over-indented
+./tlm_app/migrations/0001_initial.py:20:80: E501 line too long (117 > 79 characters)
+./tlm_app/migrations/0001_initial.py:21:80: E501 line too long (229 > 79 characters)
+./tlm_app/migrations/0001_initial.py:23:80: E501 line too long (198 > 79 characters)
+./tlm_app/migrations/0001_initial.py:26:80: E501 line too long (118 > 79 characters)
+./tlm_app/migrations/0003_alter_usertranslationhistory_sourcelanguage_and_more.py:16:80: E501 line too long (193 > 79 characters)
+./tlm_app/migrations/0003_alter_usertranslationhistory_sourcelanguage_and_more.py:21:80: E501 line too long (179 > 79 characters)
+./tlm_app/migrations/0004_alter_usertranslationhistory_targetlanguage.py:9:80: E501 line too long (81 > 79 characters)
+./tlm_app/migrations/0004_alter_usertranslationhistory_targetlanguage.py:16:80: E501 line too long (166 > 79 characters)
+./tlm_app/migrations/0005_alter_usertranslationhistory_sourcelanguage.py:16:80: E501 line too long (210 > 79 characters)
+./tlm_app/migrations/0006_alter_usertranslationhistory_sourcelanguage_and_more.py:16:80: E501 line too long (211 > 79 characters)
+./tlm_app/migrations/0006_alter_usertranslationhistory_sourcelanguage_and_more.py:21:80: E501 line too long (180 > 79 characters)
+./tlm_app/migrations/0007_userlistobject_userlistentry.py:12:80: E501 line too long (81 > 79 characters)
+./tlm_app/migrations/0007_userlistobject_userlistentry.py:19:80: E501 line too long (117 > 79 characters)
+./tlm_app/migrations/0007_userlistobject_userlistentry.py:21:80: E501 line too long (118 > 79 characters)
+./tlm_app/migrations/0007_userlistobject_userlistentry.py:27:80: E501 line too long (117 > 79 characters)
+./tlm_app/migrations/0007_userlistobject_userlistentry.py:32:80: E501 line too long (122 > 79 characters)
+./tlm_app/migrations/0008_usersettings.py:19:80: E501 line too long (156 > 79 characters)
+./tlm_app/migrations/0011_rename_originaltext_userlistentry_sourcetext_and_more.py:34:80: E501 line too long (211 > 79 characters)
+./tlm_app/migrations/0011_rename_originaltext_userlistentry_sourcetext_and_more.py:39:80: E501 line too long (180 > 79 characters)
+./tlm_app/models.py:24:1: E302 expected 2 blank lines, found 1
+./tlm_app/models.py:25:75: E261 at least two spaces before inline comment
+./tlm_app/models.py:25:80: E501 line too long (148 > 79 characters)
+./tlm_app/models.py:26:80: E501 line too long (149 > 79 characters)
+./tlm_app/models.py:26:102: E261 at least two spaces before inline comment
+./tlm_app/models.py:27:36: E261 at least two spaces before inline comment
+./tlm_app/models.py:28:80: E501 line too long (130 > 79 characters)
+./tlm_app/models.py:28:102: E261 at least two spaces before inline comment
+./tlm_app/models.py:29:46: E261 at least two spaces before inline comment
+./tlm_app/models.py:40:1: E302 expected 2 blank lines, found 1
+./tlm_app/models.py:41:75: E261 at least two spaces before inline comment
+./tlm_app/models.py:41:80: E501 line too long (99 > 79 characters)
+./tlm_app/models.py:42:49: E261 at least two spaces before inline comment
+./tlm_app/models.py:42:65: W291 trailing whitespace
+./tlm_app/models.py:48:33: W291 trailing whitespace
+./tlm_app/models.py:49:1: E302 expected 2 blank lines, found 1
+./tlm_app/models.py:50:75: E261 at least two spaces before inline comment
+./tlm_app/models.py:50:80: E501 line too long (105 > 79 characters)
+./tlm_app/models.py:51:80: E501 line too long (149 > 79 characters)
+./tlm_app/models.py:51:102: E261 at least two spaces before inline comment
+./tlm_app/models.py:52:36: E261 at least two spaces before inline comment
+./tlm_app/models.py:53:80: E501 line too long (130 > 79 characters)
+./tlm_app/models.py:53:102: E261 at least two spaces before inline comment
+./tlm_app/models.py:54:46: E261 at least two spaces before inline comment
+./tlm_app/models.py:57:1: E302 expected 2 blank lines, found 1
+./tlm_app/models.py:62:26: W291 trailing whitespace
+./tlm_app/models.py:63:6: E261 at least two spaces before inline comment
+./tlm_app/models.py:64:56: E261 at least two spaces before inline comment
+./tlm_app/models.py:64:80: E501 line too long (98 > 79 characters)
+./tlm_app/models.py:65:73: E261 at least two spaces before inline comment
+./tlm_app/models.py:65:80: E501 line too long (129 > 79 characters)
+./tlm_app/models.py:65:130: W292 no newline at end of file
+./tlm_app/test.py:3:1: F403 'from tlm_app.models import *' used; unable to detect undefined names
+./tlm_app/test.py:8:1: E302 expected 2 blank lines, found 1
+./tlm_app/test.py:11:80: E501 line too long (140 > 79 characters)
+./tlm_app/test.py:11:115: E261 at least two spaces before inline comment
+./tlm_app/test.py:13:80: E501 line too long (107 > 79 characters)
+./tlm_app/test.py:13:80: E261 at least two spaces before inline comment
+./tlm_app/test.py:14:47: E261 at least two spaces before inline comment
+./tlm_app/test.py:17:1: E302 expected 2 blank lines, found 1
+./tlm_app/test.py:20:80: E501 line too long (109 > 79 characters)
+./tlm_app/test.py:20:88: E261 at least two spaces before inline comment
+./tlm_app/test.py:20:89: E262 inline comment should start with '# '
+./tlm_app/test.py:22:39: E261 at least two spaces before inline comment
+./tlm_app/test.py:23:47: E261 at least two spaces before inline comment
+./tlm_app/test.py:29:74: W291 trailing whitespace
+./tlm_app/test.py:35:1: E302 expected 2 blank lines, found 1
+./tlm_app/test.py:38:80: E501 line too long (163 > 79 characters)
+./tlm_app/test.py:38:103: E261 at least two spaces before inline comment
+./tlm_app/test.py:39:20: F405 'UserTranslationHistory' may be undefined, or defined from star imports: tlm_app.models
+./tlm_app/test.py:39:80: E501 line too long (209 > 79 characters)
+./tlm_app/test.py:41:80: E501 line too long (196 > 79 characters)
+./tlm_app/test.py:41:117: E261 at least two spaces before inline comment
+./tlm_app/test.py:43:39: E261 at least two spaces before inline comment
+./tlm_app/test.py:43:80: E501 line too long (87 > 79 characters)
+./tlm_app/test.py:46:38: E225 missing whitespace around operator
+./tlm_app/test.py:46:48: W291 trailing whitespace
+./tlm_app/test.py:47:39: E225 missing whitespace around operator
+./tlm_app/urls.py:1:1: F401 'django.urls.include' imported but unused
+./tlm_app/urls.py:1:1: F401 'django.urls.re_path' imported but unused
+./tlm_app/urls.py:7:1: E302 expected 2 blank lines, found 1
+./tlm_app/urls.py:11:1: E305 expected 2 blank lines after class or function definition, found 1
+./tlm_app/urls.py:12:41: E261 at least two spaces before inline comment
+./tlm_app/urls.py:13:47: E261 at least two spaces before inline comment
+./tlm_app/urls.py:14:49: E261 at least two spaces before inline comment
+./tlm_app/urls.py:16:53: E261 at least two spaces before inline comment
+./tlm_app/urls.py:17:75: E261 at least two spaces before inline comment
+./tlm_app/urls.py:17:80: E501 line too long (101 > 79 characters)
+./tlm_app/urls.py:18:55: E261 at least two spaces before inline comment
+./tlm_app/urls.py:18:75: W291 trailing whitespace
+./tlm_app/urls.py:19:55: E261 at least two spaces before inline comment
+./tlm_app/urls.py:20:56: E261 at least two spaces before inline comment
+./tlm_app/urls.py:21:80: E501 line too long (111 > 79 characters)
+./tlm_app/urls.py:21:95: E261 at least two spaces before inline comment
+./tlm_app/urls.py:25:80: E501 line too long (95 > 79 characters)
+./tlm_app/urls.py:29:2: W292 no newline at end of file
+./tlm_app/views.py:3:1: F403 'from .models import *' used; unable to detect undefined names
+./tlm_app/views.py:6:1: F401 'django.contrib.auth.models.User' imported but unused
+./tlm_app/views.py:12:1: F811 redefinition of unused 'JsonResponse' from line 7
+./tlm_app/views.py:14:1: F403 'from django.db.models import *' used; unable to detect undefined names
+./tlm_app/views.py:18:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:21:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:24:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:26:17: F405 'UserListObject' may be undefined, or defined from star imports: .models, django.db.models
+./tlm_app/views.py:30:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:32:38: F405 'UserListObject' may be undefined, or defined from star imports: .models, django.db.models
+./tlm_app/views.py:32:80: E501 line too long (89 > 79 characters)
+./tlm_app/views.py:33:19: F405 'UserListEntry' may be undefined, or defined from star imports: .models, django.db.models
+./tlm_app/views.py:33:56: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:33:58: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:37:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:40:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:49:80: E501 line too long (122 > 79 characters)
+./tlm_app/views.py:62:30: F405 'UserTranslationHistory' may be undefined, or defined from star imports: .models, django.db.models
+./tlm_app/views.py:62:80: E501 line too long (110 > 79 characters)
+./tlm_app/views.py:64:21: F405 'UserListObject' may be undefined, or defined from star imports: .models, django.db.models
+./tlm_app/views.py:68:1: W293 blank line contains whitespace
+./tlm_app/views.py:71:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:73:41: W291 trailing whitespace
+./tlm_app/views.py:81:80: E501 line too long (99 > 79 characters)
+./tlm_app/views.py:91:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:103:54: W291 trailing whitespace
+./tlm_app/views.py:105:32: W291 trailing whitespace
+./tlm_app/views.py:108:44: F405 'UserSettings' may be undefined, or defined from star imports: .models, django.db.models
+./tlm_app/views.py:108:80: E501 line too long (88 > 79 characters)
+./tlm_app/views.py:109:1: W293 blank line contains whitespace
+./tlm_app/views.py:114:17: E303 too many blank lines (2)
+./tlm_app/views.py:124:35: F405 'UserSettings' may be undefined, or defined from star imports: .models, django.db.models
+./tlm_app/views.py:125:80: E501 line too long (124 > 79 characters)
+./tlm_app/views.py:126:20: F405 'UserSettings' may be undefined, or defined from star imports: .models, django.db.models
+./tlm_app/views.py:129:80: E501 line too long (82 > 79 characters)
+./tlm_app/views.py:133:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:140:13: F841 local variable 'newList' is assigned to but never used
+./tlm_app/views.py:140:23: F405 'UserListObject' may be undefined, or defined from star imports: .models, django.db.models
+./tlm_app/views.py:141:21: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:141:23: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:142:26: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:142:28: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:151:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:162:30: F405 'UserListObject' may be undefined, or defined from star imports: .models, django.db.models
+./tlm_app/views.py:162:80: E501 line too long (105 > 79 characters)
+./tlm_app/views.py:164:13: F841 local variable 'newEntry' is assigned to but never used
+./tlm_app/views.py:164:24: F405 'UserListEntry' may be undefined, or defined from star imports: .models, django.db.models
+./tlm_app/views.py:165:25: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:165:27: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:166:31: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:166:33: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:167:27: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:167:29: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:168:31: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:168:33: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:169:27: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:169:29: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:188:13: F841 local variable 'settingsProfile' is assigned to but never used
+./tlm_app/views.py:188:31: F405 'UserSettings' may be undefined, or defined from star imports: .models, django.db.models
+./tlm_app/views.py:189:21: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:189:23: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:190:31: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:190:33: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:191:32: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:191:34: E251 unexpected spaces around keyword / parameter equals
+./tlm_app/views.py:194:39: F541 f-string is missing placeholders
+./tlm_app/views.py:194:80: E501 line too long (95 > 79 characters)
+./tlm_app/views.py:198:80: E501 line too long (116 > 79 characters)
+./tlm_app/views.py:203:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:206:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:209:1: E302 expected 2 blank lines, found 1
+./tlm_app/views.py:239:1: W391 blank line at end of file
