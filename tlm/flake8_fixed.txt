@@ -1,0 +1,50 @@
+./tlm/settings.py:27:80: E501 line too long (81 > 79 characters)
+./tlm/settings.py:108:80: E501 line too long (83 > 79 characters)
+./tlm_app/migrations/0001_initial.py:20:80: E501 line too long (117 > 79 characters)
+./tlm_app/migrations/0001_initial.py:21:80: E501 line too long (229 > 79 characters)
+./tlm_app/migrations/0001_initial.py:23:80: E501 line too long (198 > 79 characters)
+./tlm_app/migrations/0001_initial.py:24:32: DJ01 Avoid using null=True on string-based fields such TextField.
+./tlm_app/migrations/0001_initial.py:26:80: E501 line too long (118 > 79 characters)
+./tlm_app/migrations/0003_alter_usertranslationhistory_sourcelanguage_and_more.py:16:80: E501 line too long (193 > 79 characters)
+./tlm_app/migrations/0003_alter_usertranslationhistory_sourcelanguage_and_more.py:21:80: E501 line too long (179 > 79 characters)
+./tlm_app/migrations/0004_alter_usertranslationhistory_targetlanguage.py:9:80: E501 line too long (81 > 79 characters)
+./tlm_app/migrations/0004_alter_usertranslationhistory_targetlanguage.py:16:80: E501 line too long (166 > 79 characters)
+./tlm_app/migrations/0005_alter_usertranslationhistory_sourcelanguage.py:16:80: E501 line too long (210 > 79 characters)
+./tlm_app/migrations/0006_alter_usertranslationhistory_sourcelanguage_and_more.py:16:80: E501 line too long (211 > 79 characters)
+./tlm_app/migrations/0006_alter_usertranslationhistory_sourcelanguage_and_more.py:21:80: E501 line too long (180 > 79 characters)
+./tlm_app/migrations/0007_userlistobject_userlistentry.py:12:80: E501 line too long (81 > 79 characters)
+./tlm_app/migrations/0007_userlistobject_userlistentry.py:19:80: E501 line too long (117 > 79 characters)
+./tlm_app/migrations/0007_userlistobject_userlistentry.py:21:80: E501 line too long (118 > 79 characters)
+./tlm_app/migrations/0007_userlistobject_userlistentry.py:27:80: E501 line too long (117 > 79 characters)
+./tlm_app/migrations/0007_userlistobject_userlistentry.py:32:80: E501 line too long (122 > 79 characters)
+./tlm_app/migrations/0008_usersettings.py:19:80: E501 line too long (156 > 79 characters)
+./tlm_app/migrations/0011_rename_originaltext_userlistentry_sourcetext_and_more.py:34:80: E501 line too long (211 > 79 characters)
+./tlm_app/migrations/0011_rename_originaltext_userlistentry_sourcetext_and_more.py:39:80: E501 line too long (180 > 79 characters)
+./tlm_app/tests.py:3:1: F403 'from tlm_app.models import *' used; unable to detect undefined names
+./tlm_app/tests.py:8:1: E302 expected 2 blank lines, found 1
+./tlm_app/tests.py:11:80: E501 line too long (140 > 79 characters)
+./tlm_app/tests.py:11:115: E261 at least two spaces before inline comment
+./tlm_app/tests.py:13:80: E501 line too long (107 > 79 characters)
+./tlm_app/tests.py:13:80: E261 at least two spaces before inline comment
+./tlm_app/tests.py:14:47: E261 at least two spaces before inline comment
+./tlm_app/tests.py:17:1: E302 expected 2 blank lines, found 1
+./tlm_app/tests.py:20:80: E501 line too long (109 > 79 characters)
+./tlm_app/tests.py:20:88: E261 at least two spaces before inline comment
+./tlm_app/tests.py:20:89: E262 inline comment should start with '# '
+./tlm_app/tests.py:22:39: E261 at least two spaces before inline comment
+./tlm_app/tests.py:23:47: E261 at least two spaces before inline comment
+./tlm_app/tests.py:29:74: W291 trailing whitespace
+./tlm_app/tests.py:35:1: E302 expected 2 blank lines, found 1
+./tlm_app/tests.py:38:80: E501 line too long (163 > 79 characters)
+./tlm_app/tests.py:38:103: E261 at least two spaces before inline comment
+./tlm_app/tests.py:39:20: F405 'UserTranslationHistory' may be undefined, or defined from star imports: tlm_app.models
+./tlm_app/tests.py:39:80: E501 line too long (209 > 79 characters)
+./tlm_app/tests.py:41:80: E501 line too long (196 > 79 characters)
+./tlm_app/tests.py:41:117: E261 at least two spaces before inline comment
+./tlm_app/tests.py:43:39: E261 at least two spaces before inline comment
+./tlm_app/tests.py:43:80: E501 line too long (87 > 79 characters)
+./tlm_app/tests.py:46:38: E225 missing whitespace around operator
+./tlm_app/tests.py:46:48: W291 trailing whitespace
+./tlm_app/tests.py:47:39: E225 missing whitespace around operator
+./tlm_app/views.py:96:80: E501 line too long (82 > 79 characters)
+./tlm_app/views.py:235:80: E501 line too long (95 > 79 characters)
