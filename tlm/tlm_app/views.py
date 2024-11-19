@@ -169,6 +169,10 @@ def addUserListEntry(request):
                 targetText = tText,
             )
 
+            successString = "Translation has been added to the list \"" + listName + "\""
+
+            messages.success(request, successString)
+
             return JsonResponse({'success': 1, 'list': 'New Entry Created'})
         except json.JSONDecodeError:
             return JsonResponse({'success': 0, 'error': 'Invalid JSON data'})

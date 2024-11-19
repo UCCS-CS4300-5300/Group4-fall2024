@@ -76,10 +76,6 @@
     <script>
         const listButton = document.getElementById("addList");
 
-        listButton.addEventListener("click", () => {
-            console.log("Add List")
-        });
-
         function openModal() {
             const modal = document.getElementById("listModal");
             modal.style.display = "flex";
@@ -106,7 +102,7 @@
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     closeModal();
-                    window.location.reload(); 
+                    window.location.reload();
                 } else {
                     console.error('Failed to add list:', xhr.responseText);
                 }
