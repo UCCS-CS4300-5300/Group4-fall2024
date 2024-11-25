@@ -1,6 +1,7 @@
 {% extends 'base_template.html' %}
 
 {% block content %}
+<h2 id="listHeader">{{listTitle.listTitle}}</h2>
 <div style="padding:5px;">
     <table class="table table-striped table-hover">
         <thead>
@@ -9,6 +10,7 @@
             <th scope="col">Original Text</th>
             <th scope="col">To</th>
             <th scope="col">Translated Text</th>
+            <th scope="col">Delete Entry</th>
           </tr>
         </thead>
         <tbody>
@@ -18,9 +20,54 @@
                 <td>{{entry.sourceText}}</td>
                 <td>{{entry.get_targetLanguage_display}}</td>
                 <td>{{entry.targetText}}</td>
+                <td><button type="button" class="btn btn-color btn-sm btn-dark" onclick="deleteEntry(this)">-</button></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
+
+<style>
+  #listHeader {
+            text-align: center;
+        }
+</style>
+
+<script>
+  let sourceLanguage = ""
+  let sourceText = ""
+  let targetLanguage = ""
+  let targetText = ""
+  
+  function deleteEntry(button) {
+    const row = button.closest('tr')
+    const listTitle = document.getElementById("listHeader").innerText
+    
+    sourceLanguage = row.cells[0].innerText;
+    sourceText = row.cells[1].innerText;
+    targetLanguage = row.cells[2].innerText;
+    targetText = row.cells[3].innerText;
+
+    const data = {
+      userListTitle : listTitle,
+      sourceLanguage : sourceLanguage,
+      sourceText : sourceText,
+      targetLanguage : targetLanguage,
+      targetText : targetText
+    }
+
+    fetch('deleteEntry', { 
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)  
+    })
+    .then(response => response.json())
+    .then(data => {window.location.reload()})
+    .catch(error => {
+        console.error('Failed to delete entry from list:', error);
+    });
+  }
+</script>
 {% endblock %}

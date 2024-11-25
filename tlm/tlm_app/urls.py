@@ -34,4 +34,5 @@ urlpatterns = [
     path('profile/update/', views.update_account, name='update_account'),
     path('api/get-definition/', views.get_definition, name='get_definition'),
     path('addEntry', views.addUserListEntry, name="addEntry"),
+    path('list_entries/deleteEntry', views.deleteUserListEntry, name="deleteEntry"),
 ]

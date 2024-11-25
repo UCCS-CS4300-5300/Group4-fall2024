@@ -37,7 +37,7 @@ def listEntries(request):
         UserListObject, pk=request.POST.get('selectedList')
     )
     listEntries = UserListEntry.objects.filter(userList=selectedList)
-    context = {"entries": listEntries}
+    context = {"entries": listEntries, "listTitle": selectedList}
     return render(request, 'list_content.html', context)
 
 
@@ -207,11 +207,39 @@ def addUserListEntry(request):
             )
 
             # "Translation has been added to the list \"" + listName + "\""
-            successString = f"Translation has been added to {listName}"
+            successString = f"Translation has been added to \"{listName}\""
 
             messages.success(request, successString)
 
             return JsonResponse({'success': 1, 'list': 'New Entry Created'})
+        except json.JSONDecodeError:
+            return JsonResponse({'success': 0, 'error': 'Invalid JSON data'})
+    else:
+        return JsonResponse({'success': 0, 'error': 'Invalid request method'})
+
+@csrf_exempt
+def deleteUserListEntry(request):
+    if request.method == 'DELETE':
+        try:
+            data = json.loads(request.body)
+            listName = data.get('userListTitle')
+            sLang = data.get('sourceLanguage')
+            sText = data.get('sourceText')
+            tLang = data.get('targetLanguage')
+            tText = data.get('targetText')
+
+            listReferenced = UserListObject.objects.filter(
+                user=request.user, listTitle=listName).first()
+
+            UserListEntry.objects.filter(
+                userList = listReferenced,
+                sourceLanguage = sLang,
+                sourceText = sText,
+                targetLanguage = tLang,
+                targetText = tText
+            ).first().delete()
+
+            return JsonResponse({'success': 1, 'list': 'Entry Deleted'})
         except json.JSONDecodeError:
             return JsonResponse({'success': 0, 'error': 'Invalid JSON data'})
     else:
