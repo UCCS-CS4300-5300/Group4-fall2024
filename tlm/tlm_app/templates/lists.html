@@ -11,6 +11,7 @@
         <li class="list-group-item">
             <p>{{ list.listTitle }}</p>
             <button class="btn btn-color btn-dark" type="submit" name="selectedList" value="{{ list.pk }}">View Entries</button>
+            <a class="btn btn-color btn-dark float-end" onclick="deleteList(this)">Delete List</a>
         </li>
         {% endfor %}
         </ul>
@@ -91,26 +92,39 @@
         function updateLists() {
             const listTitle = document.getElementById("listName").value
 
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'addToList', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            
-            xhr.send(JSON.stringify({
-                userListTitle : listTitle
-            }));
+            fetch('addToList', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userListTitle : listTitle })  
+            })
+            .then(response => response.json())
+            .then(data => {
+                closeModal();
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Failed to add list:', xhr.responseText);
+            });
+        }
 
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    closeModal();
-                    window.location.reload();
-                } else {
-                    console.error('Failed to add list:', xhr.responseText);
-                }
-            };
+        function deleteList(button) {
+            const listEntry = button.closest('li');
+            const listTitle = listEntry.querySelector('p').innerText;
 
-            xhr.send(JSON.stringify({
-                userListTitle: listTitle
-            }));
+            fetch('addToList', { 
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ listTitle: listTitle })  
+            })
+            .then(response => response.json())
+            .then(data => {window.location.reload();})
+            .catch(error => {
+                console.error('Error deleting list:', error);
+            });
         }
     </script>
 {% endblock %}

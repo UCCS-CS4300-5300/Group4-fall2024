@@ -170,6 +170,16 @@ def addToUserList(request):
             return JsonResponse({'success': 1, 'list': 'New List Created'})
         except json.JSONDecodeError:
             return JsonResponse({'success': 0, 'error': 'Invalid JSON data'})
+    elif request.method == 'DELETE':
+        try:
+            data = json.loads(request.body)
+            listName = data.get('listTitle')
+
+            UserListObject.objects.filter(user=request.user, listTitle=listName).delete()
+
+            return JsonResponse({'success': 1, 'list': 'List Deleted'})
+        except JSONDecodeError:
+            return JsonResponse({'success': 0, 'error': 'Invalid JSON data'})
     else:
         return JsonResponse({'success': 0, 'error': 'Invalid request method'})
 
