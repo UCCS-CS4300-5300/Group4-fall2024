@@ -4,15 +4,15 @@
 
 {% block content %}
     <h2 id="listHeader">My Lists</h2>
-    <form action="{% url 'listEntries'%}" method='POST'>
+    <form action="{% url 'listEntries' %}" method="POST">
         {% csrf_token %}
         <ul class="list-group">
-        {% for list in userLists%}
-        <li class="list-group-item">
-            <p>{{ list.listTitle }}</p>
-            <button class="btn btn-color btn-dark" type="submit" name="selectedList" value="{{ list.pk }}">View Entries</button>
-            <a class="btn btn-color btn-dark float-end" onclick="deleteList(this)">Delete List</a>
-        </li>
+        {% for list in userLists %}
+            <li class="list-group-item">
+                <p>{{ list.listTitle }}</p>
+                <button class="btn btn-color btn-dark" type="submit" name="selectedList" value="{{ list.pk }}">View Entries</button>
+                <a class="btn btn-color btn-dark float-end" onclick="deleteList(this)">Delete List</a>
+            </li>
         {% endfor %}
         </ul>
     </form>

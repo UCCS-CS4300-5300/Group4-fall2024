@@ -13,6 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 # from django.db.models import *
 import requests
+from django.urls import reverse
 
 
 # Create your views here.
@@ -33,12 +34,20 @@ def myLists(request):
 
 @login_required
 def listEntries(request):
-    selectedList = get_object_or_404(
-        UserListObject, pk=request.POST.get('selectedList')
-    )
-    listEntries = UserListEntry.objects.filter(userList=selectedList)
-    context = {"entries": listEntries, "listTitle": selectedList}
-    return render(request, 'list_content.html', context)
+    if request.method == 'POST':
+        chosenList = get_object_or_404(UserListObject, pk=request.POST.get('selectedList'))
+        
+        return redirect(reverse('listEntries') + f'?listId={chosenList.pk}')
+    else:
+        list_id = request.GET.get('listId')
+        if list_id:
+            chosenList = get_object_or_404(UserListObject, pk=list_id)
+            listEntries = UserListEntry.objects.filter(userList=chosenList)
+            context = {"entries": listEntries, "listTitle": chosenList}
+            return render(request, 'list_content.html', context)
+
+        context = {"userLists": UserListObject.objects.filter(user=request.user)}
+        return render(request, 'list.html', context)
 
 
 def profile(request):
