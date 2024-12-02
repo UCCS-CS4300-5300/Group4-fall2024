@@ -27,13 +27,74 @@
     </table>
 </div>
 
+<button type="button" class="btn btn-color btn-dark" onclick="openModal()">Add Translation to List</button>
+
+<!-- Modal Structure -->
+<div id="listModal" class="modal" onclick="closeModal()">
+  <div class="modal-content shadow rounded p-4 modal-body" onclick="event.stopPropagation()">
+    <h2 id="listHeader">Add Translation</h2>
+    <form action='' method='POST'>
+      {% csrf_token %}
+      <div class='row'>
+        <div style="padding-top: 5px;" class='col'>
+          <p>TO DO</p>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
 <style>
   #listHeader {
-            text-align: center;
-        }
+      text-align: center;
+  }
+
+  .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+  }
+
+  .modal.show {
+      opacity: 1;  /* Fades modal in smoothly */
+  }
+
+  .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 400px;
+      width: 90%;
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;  /* Slide effect */
+  }
+
+  .modal.show .modal-content {
+      transform: translateY(0);  /* Smooth slide-in */
+  }
 </style>
 
 <script>
+  function openModal() {
+      const modal = document.getElementById("listModal");
+      modal.style.display = "flex";
+      setTimeout(() => modal.classList.add("show"), 10); 
+  }
+
+  function closeModal() {
+      const modal = document.getElementById("listModal");
+      modal.classList.remove("show");
+      setTimeout(() => modal.style.display = "none", 300);  
+  }
+
   let sourceLanguage = ""
   let sourceText = ""
   let targetLanguage = ""
