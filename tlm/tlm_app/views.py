@@ -38,12 +38,15 @@ def listEntries(request):
         chosenList = get_object_or_404(UserListObject, pk=request.POST.get('selectedList'))
         
         return redirect(reverse('listEntries') + f'?listId={chosenList.pk}')
-    else:
-        list_id = request.GET.get('listId')
-        if list_id:
-            chosenList = get_object_or_404(UserListObject, pk=list_id)
+    elif request.method == 'GET':
+        listId = request.GET.get('listId')
+        
+        form = QuickTranslateForm(request.POST)
+
+        if listId:
+            chosenList = get_object_or_404(UserListObject, pk=listId)
             listEntries = UserListEntry.objects.filter(userList=chosenList)
-            context = {"entries": listEntries, "listTitle": chosenList}
+            context = {"entries": listEntries, "listTitle": chosenList, "form": form}
             return render(request, 'list_content.html', context)
 
         context = {"userLists": UserListObject.objects.filter(user=request.user)}

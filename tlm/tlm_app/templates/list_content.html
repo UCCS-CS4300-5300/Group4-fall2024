@@ -33,14 +33,10 @@
 <div id="listModal" class="modal" onclick="closeModal()">
   <div class="modal-content shadow rounded p-4 modal-body" onclick="event.stopPropagation()">
     <h2 id="listHeader">Add Translation</h2>
-    <form action='' method='POST'>
-      {% csrf_token %}
-      <div class='row'>
-        <div style="padding-top: 5px;" class='col'>
-          <p>TO DO</p>
-        </div>
-      </div>
-    </form>
+      <form action='' method='POST'>
+        {% csrf_token %}
+        {{ form | safe}}
+      </form>
   </div>
 </div>
 
