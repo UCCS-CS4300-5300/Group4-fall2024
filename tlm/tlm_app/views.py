@@ -41,7 +41,7 @@ def listEntries(request):
     elif request.method == 'GET':
         listId = request.GET.get('listId')
         
-        form = QuickTranslateForm(request.POST)
+        form = QuickTranslateForm()
 
         if listId:
             chosenList = get_object_or_404(UserListObject, pk=listId)

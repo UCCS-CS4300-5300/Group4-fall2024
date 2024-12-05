@@ -35,7 +35,14 @@
     <h2 id="listHeader">Add Translation</h2>
       <form action='' method='POST'>
         {% csrf_token %}
-        {{ form | safe}}
+        <p>Source Language</p>
+        {{ form.sourceLanguage }}
+        <br>
+        <p>Target Language</p>
+        {{ form.targetLanguage }}
+        <br>
+        <p>Text</p>
+        {{ form.sourceText }}
       </form>
   </div>
 </div>
