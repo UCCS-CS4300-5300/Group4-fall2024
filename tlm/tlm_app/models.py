@@ -79,7 +79,7 @@ class UserListEntry(models.Model):
     targetText = models.TextField(blank=True)  # Text after translation
 
     def __str__(self):
-        return f"{self.userList}"
+        return f"{self.sourceText} - {self.targetText}"
 
 
 # Store the user's prefered settings
