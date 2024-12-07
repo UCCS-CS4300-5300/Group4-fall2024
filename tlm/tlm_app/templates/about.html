@@ -2,16 +2,11 @@
 {% load static %}
 {% block content %}
     <div class="container mt-5">
-        <div class="row">
-            <div class="banner shadow-lg">
-                <div  id="about-banner" class="sliding-background"></div> 
-            </div>
-            <div style="position: relative; margin-inline: auto; max-width: fit-content;">
-                <img id="about-text" class="img-fluid" style="height: 100%;" src="{% static 'images/AboutText.png' %}">
-            </div>
+        <div class="row text-center">
+            <h1 class="display-1"><b>ABOUT</b></h1>
         </div>
 
-        <div class="container-fluid" style="padding-top: 75px;">
+        <div class="container-fluid" style="padding-top: 25px;">
             <div class="row text-center">
                 <h1 class="display-4">Welcome to The Language Medium!</h1>
             </div>
@@ -49,10 +44,4 @@
             </div>
         </div>
     </div>
-    
-    <script>
-        var wordHeight = document.querySelector('#about-text');
-        console.log(wordHeight.clientHeight);
-        document.getElementById('about-banner').style.height=(wordHeight.clientHeight+100)+"px";
-    </script>
 {% endblock %}
