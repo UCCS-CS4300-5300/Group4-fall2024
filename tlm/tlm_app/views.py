@@ -46,11 +46,45 @@ def listEntries(request):
         if listId:
             chosenList = get_object_or_404(UserListObject, pk=listId)
             listEntries = UserListEntry.objects.filter(userList=chosenList)
-            context = {"entries": listEntries, "listTitle": chosenList, "form": form}
+            context = {"entries": listEntries, "list": chosenList, "form": form}
             return render(request, 'list_content.html', context)
 
         context = {"userLists": UserListObject.objects.filter(user=request.user)}
         return render(request, 'list.html', context)
+
+@login_required
+def addFromEntry(request):
+    if request.method == "POST":
+        listTitle = request.POST.get('listTitle')
+        sourceLanguage = request.POST.get('sourceLanguage')
+        targetLanguage = request.POST.get('targetLanguage')
+        sourceText = request.POST.get('sourceText')
+        targetText = request.POST.get('targetText')
+
+        if sourceLanguage == targetLanguage:
+            targetText = sourceText
+        else:
+            targetText = ts.translate_text(
+                sourceText,
+                from_language=sourceLanguage,
+                to_language=targetLanguage
+            )
+
+        userList = UserListObject.objects.filter(user=request.user, listTitle=listTitle).first()
+
+        UserListEntry.objects.update_or_create(
+            userList=userList,
+            sourceLanguage=sourceLanguage,
+            sourceText=sourceText,
+            targetLanguage=targetLanguage,
+            targetText=targetText
+        )
+
+        successString = f"Translation has been added to \"{listTitle}\""
+
+        messages.success(request, successString)
+
+        return redirect(reverse('listEntries') + f'?listId={userList.pk}')
 
 
 def profile(request):
@@ -245,11 +279,9 @@ def deleteUserListEntry(request):
 
             UserListEntry.objects.filter(
                 userList = listReferenced,
-                sourceLanguage = sLang,
                 sourceText = sText,
-                targetLanguage = tLang,
                 targetText = tText
-            ).first().delete()
+            ).delete()
 
             return JsonResponse({'success': 1, 'list': 'Entry Deleted'})
         except json.JSONDecodeError:

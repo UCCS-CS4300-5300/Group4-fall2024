@@ -35,4 +35,5 @@ urlpatterns = [
     path('api/get-definition/', views.get_definition, name='get_definition'),
     path('addEntry', views.addUserListEntry, name="addEntry"),
     path('list_entries/deleteEntry', views.deleteUserListEntry, name="deleteEntry"),
+    path('list_entries/addFromEntry', views.addFromEntry, name="addFromEntry")
 ]

@@ -1,7 +1,7 @@
 {% extends 'base_template.html' %}
 
 {% block content %}
-<h2 id="listHeader">{{listTitle.listTitle}}</h2>
+<h2 id="listHeader">{{list.listTitle}}</h2>
 <div style="padding:5px;">
     <table class="table table-striped table-hover">
         <thead>
@@ -33,7 +33,7 @@
 <div id="listModal" class="modal" onclick="closeModal()">
   <div class="modal-content shadow rounded p-4 modal-body" onclick="event.stopPropagation()">
     <h2 id="listHeader">Add Translation</h2>
-      <form action='' method='POST'>
+      <form action='addFromEntry' method='POST'>
         {% csrf_token %}
         <p>Source Language</p>
         {{ form.sourceLanguage }}
@@ -43,6 +43,10 @@
         <br>
         <p>Text</p>
         {{ form.sourceText }}
+        {{ form.targetText.as_hidden }}
+        <input type="hidden" id="listTitle" name="listTitle" value="{{ list.listTitle }}">
+        <div style="padding-bottom: 1em;"></div>
+        <button type="submit" class="btn btn-color btn-dark" href="window.location.reload()">Add to list</button>
       </form>
   </div>
 </div>
